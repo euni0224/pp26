@@ -26,7 +26,7 @@
     if (!links.length) { box.remove(); return; }
     links.forEach(function (l) {
       var a = document.createElement('a');
-      a.className = 'link-box' + (l.primary ? ' is-primary' : '');
+      a.className = 'link-contact' + (l.primary ? ' is-primary' : '');
       a.href = l.href;
       if (l.ext) { a.target = '_blank'; a.rel = 'noopener'; }
       a.innerHTML = '<span>' + l.text + '</span>';
@@ -38,9 +38,20 @@
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!window.gsap || reduced) { var ld = $('.se-loader'); if (ld) ld.remove(); return; }
 
-  gsap.registerPlugin(ScrollTrigger, SplitText);
+  gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText);
   var INK = '#111214';
   var html = document.documentElement;
+  var smoother;
+
+  /* ---------- 스무스 스크롤 ---------- */
+  // ScrollTrigger보다 먼저 만들어야 함. 터치 기기는 네이티브 스크롤 유지
+  function initSmooth() {
+    smoother = ScrollSmoother.create({ wrapper: '#smooth-wrapper', content: '#smooth-content', smooth: 1.2, smoothTouch: false });
+    html.classList.add('has-smooth');
+  }
+  function scrollToEl(t, smooth) {
+    smoother.scrollTo(t, smooth, 'top top');
+  }
 
   /* ---------- 커서 ---------- */
   function initCursor() {
@@ -68,7 +79,7 @@
         gsap.to(label, { opacity: 0, duration: .2 });
       });
     });
-    $$('.menu-box, .header-logo, .link-box').forEach(function (el) {
+    $$('.link-menu, .link-logo, .link-contact').forEach(function (el) {
       el.addEventListener('mouseenter', function () { gsap.to(c, { scale: 2.6, duration: .35 }); });
       el.addEventListener('mouseleave', function () { gsap.to(c, { scale: 1, duration: .35 }); });
     });
@@ -77,7 +88,7 @@
   /* ---------- 자석 버튼 ---------- */
   function initMagnets() {
     if (!matchMedia('(hover: hover)').matches) return;
-    $$('.link-box').forEach(function (el) {
+    $$('.link-contact').forEach(function (el) {
       var inner = $('span', el);
       var xTo = gsap.quickTo(el, 'x', { duration: .6, ease: 'power3' }), yTo = gsap.quickTo(el, 'y', { duration: .6, ease: 'power3' });
       var ixTo = gsap.quickTo(inner, 'x', { duration: .6, ease: 'power3' }), iyTo = gsap.quickTo(inner, 'y', { duration: .6, ease: 'power3' });
@@ -112,8 +123,8 @@
   }
   function initRolls(mm) {
     mm.add('(hover: hover)', function () {
-      $$('.menu-box').forEach(function (el) { makeRoll(el); });
-      $$('.archive-wrap').forEach(function (row) { makeRoll($('.archive-name', row), row); });
+      $$('.link-menu').forEach(function (el) { makeRoll(el); });
+      $$('.link-archive').forEach(function (row) { makeRoll($('.archive-name', row), row); });
     });
   }
 
@@ -131,10 +142,10 @@
     $$('a[href^="#"]').forEach(function (a) {
       a.addEventListener('click', function (e) {
         var id = a.getAttribute('href');
-        var t = id === '#top' ? document.body : $(id);
-        if (!t) return;
+        var t = id === '#top' ? 0 : $(id);
+        if (t === null) return;
         e.preventDefault();
-        window.scrollTo({ top: id === '#top' ? 0 : t.getBoundingClientRect().top + window.scrollY, behavior: 'smooth' });
+        scrollToEl(t, true);
       });
     });
   }
@@ -211,7 +222,7 @@
 
   /* ---------- 프로젝트 ---------- */
   function initWork(mm) {
-    var work = $('.se-work'), track = $('.project-area'), panels = $$('.project-wrap');
+    var work = $('.se-work'), track = $('.project-area'), panels = $$('.link-project');
     var bar = $('.progress-area i'), cur = $('.work-current');
     var DEF = { '--wbg': getComputedStyle(html).getPropertyValue('--bg').trim() || '#f3f2ee', '--wfg': INK, '--wac': '#ff5b14' };
     var active = -1;
@@ -302,7 +313,7 @@
         shown = false;
         gsap.to(area, { autoAlpha: 0, scale: .6, duration: .4, ease: 'power3.out', overwrite: 'auto' });
       }
-      var rows = $$('.archive-wrap');
+      var rows = $$('.link-archive');
       list.addEventListener('mousemove', move);
       list.addEventListener('mouseleave', leaveList);
       rows.forEach(function (r) { r.addEventListener('mouseenter', enterRow); });
@@ -315,7 +326,17 @@
   }
 
   /* ---------- AI ---------- */
-  function initAi() {
+  function initAi(mm) {
+    // smooth-content 안에서는 sticky가 동작하지 않아 pin으로 대체
+    mm.add('(min-width: 961px)', function () {
+      var wrap = $('.terminal-wrap');
+      ScrollTrigger.create({
+        trigger: wrap, start: 'top 96px',
+        endTrigger: '.ai-area', end: function () { return 'bottom ' + (96 + wrap.offsetHeight) + 'px'; },
+        pin: true, pinSpacing: false, invalidateOnRefresh: true
+      });
+    });
+
     var prompt = $('.terminal-line.is-prompt');
     var text = prompt.textContent;
     var rest = $$('.terminal-line:not(.is-prompt)');
@@ -323,7 +344,7 @@
     gsap.set(rest, { autoAlpha: 0, y: 10 });
     var o = { n: 0 };
     var tl = gsap.timeline({ scrollTrigger: { trigger: '.terminal-wrap', start: 'top 75%' } });
-    tl.from('.terminal-wrap', { y: 60, autoAlpha: 0, duration: .9, ease: 'power3.out' })
+    tl.from('.terminal-wrap > *', { y: 60, autoAlpha: 0, duration: .9, ease: 'power3.out' })
       .call(function () { prompt.classList.add('is-typing'); })
       .to(o, { n: text.length, duration: text.length * .045, ease: 'none', onUpdate: function () { prompt.textContent = text.slice(0, Math.round(o.n)); } })
       .call(function () { prompt.classList.remove('is-typing'); })
@@ -339,17 +360,20 @@
   }
 
   /* ---------- 연락처 ---------- */
-  function initContact() {
+  function initContact(mm) {
     var cs = SplitText.create('.contact-line', { type: 'chars' });
     gsap.from(cs.chars, { yPercent: 120, rotate: 8, duration: 1, stagger: .035, ease: 'power4.out', scrollTrigger: { trigger: '.contact-title', start: 'top 85%' } });
-    gsap.from('.contact-note, .link-area .link-box', { y: 30, autoAlpha: 0, duration: .8, stagger: .08, ease: 'power3.out', scrollTrigger: { trigger: '.contact-note', start: 'top 92%' } });
-    gsap.from('.contact-title', { y: 120, ease: 'none', scrollTrigger: { trigger: '.se-contact', start: 'top bottom', end: 'top top', scrub: true } });
+    gsap.from('.contact-note, .link-area .link-contact', { y: 30, autoAlpha: 0, duration: .8, stagger: .08, ease: 'power3.out', scrollTrigger: { trigger: '.contact-note', start: 'top 92%' } });
+    // 페이지 끝(max)에서 끝나야 짧은 화면에서도 제목이 아래 문구와 겹친 채 멈추지 않음
+    mm.add({ sm: '(max-width: 760px)', lg: '(min-width: 761px)' }, function (ctx) {
+      gsap.from('.contact-title', { y: ctx.conditions.sm ? 32 : 120, ease: 'none', scrollTrigger: { trigger: '.se-contact', start: 'top bottom', end: 'max', scrub: true } });
+    });
   }
 
   /* ---------- 페이지 전환 ---------- */
   function initTransition() {
     var wipe = $('.se-wipe');
-    $$('a.project-wrap').forEach(function (a) {
+    $$('a.link-project').forEach(function (a) {
       a.addEventListener('click', function (e) {
         if (a.target === '_blank' || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
         e.preventDefault();
@@ -368,8 +392,9 @@
     try { quick = sessionStorage.getItem('pf-seen') === '1'; sessionStorage.setItem('pf-seen', '1'); } catch (err) { }
     var dur = quick ? .5 : 1.6;
     document.body.style.overflow = 'hidden';
+    smoother.paused(true);
     var o = { v: 0 };
-    var tl = gsap.timeline({ onComplete: function () { loader.remove(); document.body.style.overflow = ''; done(); } });
+    var tl = gsap.timeline({ onComplete: function () { loader.remove(); document.body.style.overflow = ''; smoother.paused(false); done(); } });
     tl.to(o, { v: 100, duration: dur, ease: 'power2.inOut', onUpdate: function () { num.textContent = Math.round(o.v); } })
       .to('.loader-bar', { scaleX: 1, duration: dur, ease: 'power2.inOut' }, 0)
       .to(loader, { yPercent: -100, duration: .9, ease: 'power4.inOut' }, '+=.12')
@@ -381,6 +406,7 @@
   window.scrollTo(0, 0);
   function start() {
   var mm = gsap.matchMedia();
+  initSmooth();
   initCursor();
   initNav();
   initHeroScroll();
@@ -391,8 +417,8 @@
   initArchive(mm);
   initRolls(mm);
   initStack();
-  initAi();
-  initContact();
+  initAi(mm);
+  initContact(mm);
   initMagnets();
   initTransition();
 
@@ -400,7 +426,7 @@
     ScrollTrigger.refresh();
     if (location.hash) {
       var t = $(location.hash);
-      if (t) window.scrollTo(0, t.getBoundingClientRect().top + window.scrollY);
+      if (t) scrollToEl(t, false);
     }
   });
   window.addEventListener('load', function () { ScrollTrigger.refresh(); });

@@ -119,17 +119,17 @@
 <style id="pf-shell">
 .pf-enter{position:fixed;inset:0;z-index:9999;transform-origin:top;pointer-events:none;animation:pfEnter .85s cubic-bezier(.76,0,.24,1) .05s forwards}
 @keyframes pfEnter{to{transform:scaleY(0)}}
-.pf-back{position:fixed;left:20px;bottom:20px;z-index:9998;display:inline-flex;align-items:center;gap:8px;height:46px;padding:0 18px 0 14px;border-radius:999px;background:#111214;color:#fff;font:700 14px/1 "Pretendard",system-ui,sans-serif;letter-spacing:-.02em;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.25);transition:transform .35s cubic-bezier(.22,1,.36,1)}
-.pf-back:hover{transform:translateY(-3px)}
-.pf-back svg{flex-shrink:0}
-@media (max-width:480px){.pf-back{left:12px;bottom:12px;height:40px;padding:0 14px 0 10px;font-size:13px}}
-@media (prefers-reduced-motion:reduce){.pf-enter{display:none}.pf-back{transition:none}}
+.link-back{position:fixed;left:20px;bottom:20px;z-index:9998;display:inline-flex;align-items:center;gap:8px;height:46px;padding:0 18px 0 14px;border-radius:999px;background:#111214;color:#fff;font:700 14px/1 "Pretendard",system-ui,sans-serif;letter-spacing:-.02em;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.25);transition:transform .35s cubic-bezier(.22,1,.36,1)}
+.link-back:hover{transform:translateY(-3px)}
+.link-back svg{flex-shrink:0}
+@media (max-width:480px){.link-back{left:12px;bottom:12px;height:40px;padding:0 14px 0 10px;font-size:13px}}
+@media (prefers-reduced-motion:reduce){.pf-enter{display:none}.link-back{transition:none}}
 </style>
 </head>
 
 <body>
 <div class="pf-enter" style="background:#06204a" aria-hidden="true"></div>
-<a class="pf-back" href="../../index.html#work"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>포트폴리오 홈</a>
+<a class="link-back" href="../../index.html#work"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>포트폴리오 홈</a>
 
   <header class="hero">
     <div class="wrap hero-inner">
