@@ -1,0 +1,175 @@
+@charset "UTF-8";
+
+/* Poppins */
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local('Poppins Regular'), 
+         url(../font/poppins/poppins400_latin.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: local('Poppins Medium'), 
+         url(../font/poppins/poppins500_latin.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: local('Poppins SemiBold'), 
+         url(../font/poppins/poppins600_latin.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local('Poppins Bold'), 
+         url(../font/poppins/poppins700_latin.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* //Poppins */
+
+
+/* 메이플스토리 */
+@font-face {
+    font-family: 'Maplestory';
+    src: local('메이플스토리 OTF Bold'), local('메이플스토리 Bold'), 
+         url(../font/maplestory/MaplestoryOTFBold.woff) format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Maplestory';
+    src: local('메이플스토리 OTF Light'), local('메이플스토리 Light'), 
+         url(../font/maplestory/MaplestoryOTFLight.woff) format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+/* //메이플스토리 */
+
+
+/* Pretendard Variable */
+@font-face {
+	font-family: 'Pretendard Variable';
+	font-weight: 45 920;
+	font-style: normal;
+	font-display: swap;
+	src: local('Pretendard Variable'), 
+         url(../font/pretendard1.3.9/PretendardVariable.woff2) format('woff2-variations');
+}
+/* //Pretendard Variable */
+
+
+/* Gontserrat 게임 타이머 */
+@font-face {
+	font-family: 'Gontserrat';
+    src: url(../font/gontserrat/Gontserrat-Regular.ttf) format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+/* //Gontserrat 게임 타이머 */
+
+/* stanberry */
+@font-face {
+    font-family: 'Stanberry';
+    src: local('Stanberry'), 
+         url(../font/stanberry/Stanberry.ttf) format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+/* //stanberry */
+
+/* fredoka */
+@font-face {
+    font-family: 'Fredoka';
+    src: local('Fredoka'), 
+         url(../font/fredoka/Fredoka-Regular.ttf) format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Fredoka';
+    src: local('Fredoka Medium'), 
+         url(../font/fredoka/Fredoka-Medium.ttf) format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Fredoka';
+    src: local('Fredoka SemiBold'), 
+         url(../font/fredoka/Fredoka-SemiBold.ttf) format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Fredoka';
+    src: local('Fredoka Bold'), 
+         url(../font/fredoka/Fredoka-bold.ttf) format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+/* //fredoka */
+
+/* cleanow */
+@font-face {
+    font-family: 'cleanow';
+    src: local('Cleanow'), 
+         url(../font/cleanow/cleanow.ttf) format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+/* //cleanow */
+
+
+/* 먼슬리 테스트 Proxima Soft */
+@font-face {
+    font-family: 'Proxima Soft';
+    font-style: normal;
+    font-weight: 600;
+    src: local('Proxima Soft Semibold'), 
+         url(../font/proximasoft/ProximaSoft600.woff2) format('woff2'), 
+         url(../font/proximasoft/ProximaSoft600.woff) format('woff'), 
+         url(../font/proximasoft/ProximaSoft600.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Proxima Soft';
+    font-style: normal;
+    font-weight: 800;
+    src: local('Proxima Soft Extrabold'), 
+         url(../font/proximasoft/ProximaSoft800.woff2) format('woff2'), 
+         url(../font/proximasoft/ProximaSoft800.woff) format('woff'), 
+         url(../font/proximasoft/ProximaSoft800.otf) format('opentype');
+}
+/* //Proxima Soft */
+
+/* Story Quiz 인트로 자막 */
+@font-face {
+    font-family: 'bien';
+    font-weight: 700;
+    src: url(../font/bien_ver13.ttf) format('truetype');
+}
+/* //Story Quiz 인트로 자막 */
+
+/* 비디오 열기 버튼 */
+@font-face {
+    font-family: 'Jalnan 2';
+    font-weight: 400;
+    src: url(../font/jalnan2/jalnan2.woff) format('woff'), 
+         url(../font/jalnan2/jalnan2.otf) format('opentype');
+}
+/* //비디오 열기 버튼 */

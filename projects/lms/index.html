@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BuildUp LITERACY LMS · 퍼블리싱 포트폴리오</title>
+  <meta name="description" content="Build Up Literacy 관리자(LMS) 화면 퍼블리싱 · 일부 UI 디자인 포트폴리오">
+  <meta property="og:title" content="BuildUp LITERACY LMS · 퍼블리싱 포트폴리오">
+  <meta property="og:image" content="screenshots/dashboard.png">
+  <style>
+    @font-face { font-family: 'Pretendard'; src: url('font/pretendard1.3.9/PretendardVariable.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
+
+    :root {
+      --bg: #f7f8fa;
+      --surface: #ffffff;
+      --ink: #1e2124;
+      --ink-sub: #58616a;
+      --ink-mute: #8a949e;
+      --line: #e6e8ea;
+      --orange: #f86f00;
+      --sky: #00a0ee;
+      --sky-deep: #0090db;
+      --sky-soft: #e5f7ff;
+      --radius: 16px;
+      --gutter: clamp(16px, 4vw, 40px);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Pretendard', system-ui, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; word-break: keep-all; -webkit-font-smoothing: antialiased; }
+    img { display: block; max-width: 100%; }
+
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 var(--gutter); }
+
+    /* HERO */
+    .hero { position: relative; overflow: hidden; background: linear-gradient(180deg, #e5f7ff 0%, #f2fbff 100%); }
+    .hero::before, .hero::after { content: ''; position: absolute; border-radius: 50%; pointer-events: none; }
+    .hero::before { width: 420px; height: 420px; left: -160px; top: -180px; background: rgba(0, 160, 238, .08); }
+    .hero::after { width: 300px; height: 300px; right: -90px; bottom: -150px; background: rgba(248, 111, 0, .07); }
+    .hero-inner { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(24px, 4vw, 56px); align-items: center; padding-block: clamp(48px, 8vw, 96px); }
+    .hero-logo { height: 52px; width: auto; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; padding: 6px 14px; border-radius: 999px; background: #fff; border: 1px solid rgba(248, 111, 0, .35); color: var(--orange); font-size: 13px; font-weight: 700; letter-spacing: .02em; }
+    .hero h1 { margin-top: 14px; font-weight: 800; font-size: clamp(30px, 4.2vw, 46px); line-height: 1.22; letter-spacing: -.02em; }
+    .hero h1 span { color: var(--sky); }
+    .hero p.lead { margin-top: 16px; font-size: clamp(15px, 1.6vw, 17px); color: var(--ink-sub); max-width: 34em; }
+    .hero-shot { position: relative; border-radius: 14px; overflow: hidden; background: #fff; box-shadow: 0 30px 60px rgba(0, 70, 120, .16), 0 0 0 1px rgba(0, 0, 0, .05); aspect-ratio: 16 / 9; }
+    .hero-shot img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+
+    .facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; margin-top: -36px; position: relative; background: var(--line); border-radius: var(--radius); overflow: hidden; box-shadow: 0 12px 32px rgba(0, 70, 120, .08); }
+    .fact { background: var(--surface); padding: 20px 22px; }
+    .fact dt { font-size: 12px; color: var(--ink-mute); font-weight: 600; }
+    .fact dd { margin-top: 4px; font-weight: 700; font-size: 15px; }
+    .fact dd em { font-style: normal; color: var(--orange); }
+
+    /* SECTION */
+    section.block { padding: clamp(48px, 7vw, 80px) 0 0; }
+    .block-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 8px 24px; margin-bottom: 24px; }
+    .block-head h2 { font-weight: 800; font-size: clamp(22px, 2.6vw, 28px); letter-spacing: -.01em; }
+    .block-head h2 small { display: block; font-size: 13px; font-weight: 700; color: var(--orange); letter-spacing: .04em; margin-bottom: 4px; }
+    .block-head h2 .count { font-size: 15px; font-weight: 700; color: var(--sky); margin-left: 6px; }
+    .block-head p { color: var(--ink-sub); font-size: 15px; max-width: 40em; }
+
+    /* DESIGN SYSTEM */
+    .ds { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 20px; }
+    .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 24px; }
+    .panel h3 { font-size: 16px; font-weight: 700; margin-bottom: 14px; }
+    .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+    .sw { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .sw i { display: block; height: 54px; }
+    .sw div { padding: 10px 12px; }
+    .sw b { display: block; font-size: 13px; }
+    .sw code { font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: var(--ink-mute); }
+    .sw p { font-size: 12.5px; color: var(--ink-sub); margin-top: 2px; }
+    .type-row { display: flex; align-items: baseline; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .type-row:last-of-type { border-bottom: 0; }
+    .type-row span { flex: 0 0 72px; font-size: 12px; color: var(--ink-mute); font-family: ui-monospace, Consolas, monospace; }
+    .ui-sample { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
+    .ui-sample .b { display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border-radius: 8px; font-size: 13.5px; font-weight: 600; }
+    .b-primary { background: var(--orange); color: #fff; }
+    .b-line { border: 1px solid var(--orange); color: var(--orange); background: #fff; }
+    .b-sky { background: var(--sky); color: #fff; }
+    .b-out { border: 1px solid var(--sky); color: var(--sky); background: #fff; }
+    .b-tab { color: var(--sky); border-bottom: 2px solid var(--sky); border-radius: 0 !important; padding: 0 6px !important; }
+
+    .principles { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; list-style: none; margin-top: 20px; }
+    .principles li { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px; }
+    .principles .no { font-size: 12px; font-weight: 700; color: var(--sky); font-family: ui-monospace, Consolas, monospace; }
+    .principles h3 { margin-top: 4px; font-size: 16px; font-weight: 700; }
+    .principles p { margin-top: 6px; color: var(--ink-sub); font-size: 14px; }
+
+    /* ROLES */
+    .roles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+    .role { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; }
+    .role b { display: block; font-size: 15px; }
+    .role p { margin-top: 4px; font-size: 13.5px; color: var(--ink-sub); }
+
+    /* CARDS */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+    .card { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+    .card-thumb { aspect-ratio: 16 / 9; background: #eef1f3; overflow: hidden; border-bottom: 1px solid var(--line); }
+    .card-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+    .card-body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+    .card-title { display: flex; align-items: center; gap: 6px; font-weight: 700; font-size: 15px; }
+    .mine { display: inline-block; padding: 1px 7px; border-radius: 999px; background: var(--orange); color: #fff; font-size: 11px; font-weight: 700; }
+    .card-desc { color: var(--ink-sub); font-size: 13.5px; }
+
+    /* POINTS */
+    .points { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; list-style: none; }
+    .points li { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px; }
+    .points h3 { font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+    .points h3::before { content: ''; width: 8px; height: 8px; border-radius: 2px; transform: rotate(45deg); background: var(--orange); box-shadow: 0 0 0 3px rgba(248, 111, 0, .18); }
+    .points p { margin-top: 6px; color: var(--ink-sub); font-size: 14px; }
+    .points code { font-family: ui-monospace, Consolas, monospace; font-size: 12.5px; background: var(--sky-soft); color: var(--sky-deep); padding: 1px 5px; border-radius: 4px; }
+
+    footer.foot { margin-top: clamp(56px, 8vw, 96px); padding: 28px 0 40px; border-top: 1px solid var(--line); color: var(--ink-mute); font-size: 13px; }
+    footer.foot .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+
+    @media (max-width: 960px) {
+      .ds { grid-template-columns: 1fr; }
+      .roles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 860px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 480px) {
+      .roles { grid-template-columns: 1fr; }
+    }
+  
+    .demo-note { display: flex; align-items: center; gap: 8px; width: fit-content; max-width: 100%; margin-top: 20px; padding: 9px 14px; border-radius: 10px; font-size: 14px; font-weight: 600; line-height: 1.5; border: 1px solid color-mix(in srgb, currentColor 30%, transparent); background: color-mix(in srgb, currentColor 7%, transparent); }
+    .demo-note svg { flex-shrink: 0; }
+</style>
+<style id="pf-shell">
+.pf-enter{position:fixed;inset:0;z-index:9999;transform-origin:top;pointer-events:none;animation:pfEnter .85s cubic-bezier(.76,0,.24,1) .05s forwards}
+@keyframes pfEnter{to{transform:scaleY(0)}}
+.pf-back{position:fixed;left:20px;bottom:20px;z-index:9998;display:inline-flex;align-items:center;gap:8px;height:46px;padding:0 18px 0 14px;border-radius:999px;background:#111214;color:#fff;font:700 14px/1 "Pretendard",system-ui,sans-serif;letter-spacing:-.02em;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.25);transition:transform .35s cubic-bezier(.22,1,.36,1)}
+.pf-back:hover{transform:translateY(-3px)}
+.pf-back svg{flex-shrink:0}
+@media (max-width:480px){.pf-back{left:12px;bottom:12px;height:40px;padding:0 14px 0 10px;font-size:13px}}
+@media (prefers-reduced-motion:reduce){.pf-enter{display:none}.pf-back{transition:none}}
+</style>
+</head>
+
+<body>
+<div class="pf-enter" style="background:#dff4ff" aria-hidden="true"></div>
+<a class="pf-back" href="../../index.html#work"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>포트폴리오 홈</a>
+
+  <header class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <img class="hero-logo" src="img/logo.svg" alt="BuildUp LITERACY">
+        <span class="hero-eyebrow">PUBLISHING · UI DESIGN</span>
+        <h1>BuildUp LITERACY LMS<br><span>관리자 화면</span> 퍼블리싱</h1>
+        <p class="lead">초등 영어 리터러시 서비스 Build Up Literacy를 운영하는 본사·지사·원·교사용 관리 시스템입니다.
+          49개 화면의 마크업·스타일·인터랙션을 맡았고, 일부 화면은 UI 디자인까지 직접 했습니다.</p>
+        <p class="demo-note"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 20h8M12 16v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>대면 면접 시 실제 화면을 직접 조작하며 더 자세히 보여드릴 수 있습니다.</p>
+      </div>
+      <div class="hero-shot">
+        <img src="screenshots/dashboard.png" alt="통합 현황판 — 이번 달 요약 카드, 독서 랭킹, 월별 학습량 차트">
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <dl class="facts">
+      <div class="fact"><dt>작업 범위</dt><dd>퍼블리싱 + <em>일부 화면 UI 디자인</em></dd></div>
+      <div class="fact"><dt>화면 수</dt><dd>49개 (팝업 4종 포함)</dd></div>
+      <div class="fact"><dt>사용자 권한</dt><dd>4종 (본사 · 지사 · 원장 · 교사)</dd></div>
+      <div class="fact"><dt>기술</dt><dd>HTML · CSS · jQuery · Chart.js</dd></div>
+    </dl>
+  </div>
+
+  <main class="wrap">
+
+    <section class="block">
+      <div class="block-head">
+        <h2><small>DESIGN RULES</small>디자인 규칙 정리 · 적용</h2>
+        <p>색·글자 크기·버튼·폼 스타일을 하나의 규칙으로 정리해 49개 화면 전체에 똑같이 적용했습니다.</p>
+      </div>
+      <div class="ds">
+        <div class="panel">
+          <h3>컬러</h3>
+          <div class="swatches">
+            <div class="sw"><i style="background:#F86F00"></i><div><b>Highlight</b><code>#F86F00</code><p>등록·저장·로그인 등 실행 버튼</p></div></div>
+            <div class="sw"><i style="background:#00A0EE"></i><div><b>Sky</b><code>#00A0EE</code><p>선택된 탭·메뉴, 보조 버튼</p></div></div>
+            <div class="sw"><i style="background:#E5F7FF"></i><div><b>Sky Soft</b><code>#E5F7FF</code><p>현재 메뉴·상위 랭킹 행 배경</p></div></div>
+            <div class="sw"><i style="background:#1E2124"></i><div><b>Gray 900</b><code>#1E2124</code><p>제목·본문</p></div></div>
+            <div class="sw"><i style="background:#8A949E"></i><div><b>Gray 400</b><code>#8A949E</code><p>보조 텍스트·placeholder</p></div></div>
+            <div class="sw"><i style="background:#F7F8FA;border-bottom:1px solid #E6E8EA"></i><div><b>Background</b><code>#F7F8FA</code><p>콘텐츠 영역 바탕</p></div></div>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>타이포 · 컴포넌트</h3>
+          <div class="type-row"><span>Title</span><strong style="font-size:22px">학생 학습 통계</strong></div>
+          <div class="type-row"><span>Number</span><strong style="font-size:30px;letter-spacing:-.01em">3,482<small style="font-size:16px;font-weight:600"> 명</small></strong></div>
+          <div class="type-row"><span>Body</span><span style="flex:1;font-family:inherit;font-size:15px;color:var(--ink)">전월 대비 <b style="color:#ee3b4b">▲ +126명</b></span></div>
+          <div class="type-row"><span>Caption</span><span style="flex:1;font-family:inherit;font-size:13px;color:var(--ink-mute)">* 표시가 되어 있는 항목은 필수 입력 값입니다.</span></div>
+          <div class="ui-sample">
+            <span class="b b-primary">등록</span>
+            <span class="b b-line">학습 횟수 산정 방식</span>
+            <span class="b b-sky">주소 찾기</span>
+            <span class="b b-out">다운로드</span>
+            <span class="b b-tab">지사 별 통계</span>
+          </div>
+        </div>
+      </div>
+
+      <ul class="principles">
+        <li>
+          <span class="no">01</span>
+          <h3>49개 화면, 하나의 골격</h3>
+          <p>왼쪽 사이드바 · 상단 사용자 정보 · 브레드크럼 · 흰색 콘텐츠 카드로 이어지는 레이아웃을 모든 화면에 똑같이 적용해, 어떤 메뉴에 들어가도 위치를 잃지 않게 했습니다.</p>
+        </li>
+        <li>
+          <span class="no">02</span>
+          <h3>색은 역할로만 씁니다</h3>
+          <p>오렌지는 ‘실행’, 하늘색은 ‘지금 선택된 것’, 빨강·파랑은 ‘전월 대비 증감’. 색마다 뜻을 하나씩만 정해 화면이 많아도 규칙이 흐트러지지 않습니다.</p>
+        </li>
+        <li>
+          <span class="no">03</span>
+          <h3>숫자가 먼저 읽히는 표</h3>
+          <p>통계 표는 숫자 열을 가운데 정렬하고, 평균 행은 회색 배경으로 맨 위에 두었습니다. 랭킹 1~3위는 메달 아이콘과 하늘색 행으로 구분합니다.</p>
+        </li>
+        <li>
+          <span class="no">04</span>
+          <h3>한눈에 보는 학습 진행</h3>
+          <p>학생 결과 조회는 학생 × Book 격자에서 완료한 칸만 하늘색으로 채워, 숫자를 읽지 않아도 누가 어디까지 했는지 바로 보이게 설계했습니다.</p>
+        </li>
+        <li>
+          <span class="no">05</span>
+          <h3>헷갈리지 않는 입력 폼</h3>
+          <p>라벨은 왼쪽에 정렬하고 필수 항목은 * 로 표시했습니다. 학생 코드처럼 자동으로 생성되는 값은 입력창 대신 안내 문구로 보여줍니다. 취소·등록 버튼은 항상 오른쪽 위에 둡니다.</p>
+        </li>
+        <li>
+          <span class="no">06</span>
+          <h3>요약 → 상세의 흐름</h3>
+          <p>현황판의 요약 카드와 ‘더 보기’가 각 상세 화면으로 이어지도록 정보 구조를 짰고, 통계는 ‘지사 별 / 원 별’, ‘횟수 / 시간’ 탭으로 같은 화면 안에서 관점만 바꿉니다.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="block">
+      <div class="block-head">
+        <h2><small>USER ROLES</small>권한별 화면</h2>
+        <p>같은 레이아웃 위에서 로그인한 계정의 권한에 따라 메뉴와 현황판 구성이 달라집니다.</p>
+      </div>
+      <div class="roles">
+        <div class="role"><b>본사 관리자</b><p>전국 지사·원·회원 관리, 전체 통계와 전국 랭킹</p></div>
+        <div class="role"><b>지사</b><p>소속 원 관리와 지사 단위 통계, 내 정보</p></div>
+        <div class="role"><b>원장</b><p>반·교사·학생 관리, 반 별 수업 현황과 학습 결과</p></div>
+        <div class="role"><b>지사 교사</b><p>담당 반 학생의 학습 현황과 과제 알림 전송</p></div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="block-head">
+        <h2><small>LOGIN · DASHBOARD</small>로그인 · 대시보드<span class="count">5</span></h2>
+      </div>
+      <div class="grid">
+        <div class="card"><div class="card-thumb"><img src="screenshots/login.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">로그인</p><p class="card-desc">브랜드 일러스트 배경 위 코드·비밀번호 로그인. 비밀번호 보기 토글.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/dashboard.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">통합 현황판 (본사)</p><p class="card-desc">이번 달 요약 카드 5종과 전월 대비 증감, 독서 랭킹, 월별 학습량 차트.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/dashboard_local.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">통합 현황판 (원장)</p><p class="card-desc">소속 반·학생 수, 학습 횟수·시간 요약과 반 별 수업 현황.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/dashboard_teacher.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">통합 현황판 (지사 교사)</p><p class="card-desc">반을 고르면 반 정보, 최근 수업, 수업 페이지 바로 가기, 반 학습 현황이 바뀝니다.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/my_info.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">내 정보 (지사)</p><p class="card-desc">지사 정보 확인과 비밀번호·담당자 정보 수정.</p></div></div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="block-head">
+        <h2><small>ORGANIZATION</small>조직 관리<span class="count">9</span></h2>
+        <p>지사 → 원 → 반으로 이어지는 조직을 목록 · 등록 · 상세(수정) 세 가지 화면 패턴으로 통일했습니다.</p>
+      </div>
+      <div class="grid">
+        <div class="card"><div class="card-thumb"><img src="screenshots/branch.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">지사 관리</p><p class="card-desc">검색·필터와 페이지네이션이 있는 지사 목록.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/branch_registration.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">지사 등록</p><p class="card-desc">필수 항목 표시와 주소 찾기가 들어간 등록 폼.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/branch_detail.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">지사 정보 / 수정</p><p class="card-desc">등록 폼과 같은 구조로 조회·수정을 한 화면에서.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/local.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">원 관리</p><p class="card-desc">관할 지사 · 상태 필터가 있는 원 목록.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/local_registration.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">원 등록</p><p class="card-desc">원 정보 입력. 원 코드·초기 비밀번호는 자동 생성 안내.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/local_detail.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">원 정보 / 수정</p><p class="card-desc">원 기본 정보 조회·수정과 비밀번호 초기화.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/classroom.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">반 관리</p><p class="card-desc">관할 지사·원·Step·상태 필터와 일괄 등록이 있는 반 목록.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/classroom_registration.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">반 등록</p><p class="card-desc">관할 원 찾기와 반 정보 입력. 반 코드는 자동 생성 안내.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/classroom_detail.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">반 정보 / 수정</p><p class="card-desc">등록 폼과 같은 구조로 반 정보 조회·수정.</p></div></div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="block-head">
+        <h2><small>MEMBERS · ASSIGNMENT</small>회원 관리 · 교사 배정<span class="count">8</span></h2>
+      </div>
+      <div class="grid">
+        <div class="card"><div class="card-thumb"><img src="screenshots/teacher.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">교사 관리</p><p class="card-desc">소속 원·담당 반이 함께 보이는 교사 목록.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/teacher_registration.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">교사 등록</p><p class="card-desc">교사 계정 생성과 기본 정보 입력.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/teacher_detail.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">교사 정보 / 수정</p><p class="card-desc">교사 정보 조회와 수정.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/student.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">학생 관리</p><p class="card-desc">학생 코드·소속 반·상태로 찾는 학생 목록.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/student_registration.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">학생 등록</p><p class="card-desc">자동 생성되는 학생 코드·초기 비밀번호는 안내 문구로 표시.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/student_detail.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">학생 정보 / 수정</p><p class="card-desc">학생·학부모 정보와 소속 반 변경.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/teacher_assignment.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">교사 배정 관리</p><p class="card-desc">교사별 담당 원·반 수와 일괄 배정.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/teacher_assignment_class.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">교사 배정 - 반 배정</p><p class="card-desc">전체 반 목록에서 골라 교사에게 배정.</p></div></div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="block-head">
+        <h2><small>RANKING · STATISTICS</small>랭킹 · 학습 통계<span class="count">9</span></h2>
+        <p>월 이동 화살표와 정렬·검색을 모든 통계 화면에 같은 자리에 두고, ‘산정 방식’ 버튼으로 숫자의 기준을 바로 확인할 수 있게 했습니다.</p>
+      </div>
+      <div class="grid">
+        <div class="card"><div class="card-thumb"><img src="screenshots/all_ranking.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">전국 독서 랭킹</p><p class="card-desc">이달 독서량 기준 순위. 1~3위 메달과 하늘색 행 강조.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/ranking.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">원 독서 랭킹</p><p class="card-desc">원 안에서의 학생 순위.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/count_stats.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">학습 횟수 통계 (지사 별)</p><p class="card-desc">지사별 학습 횟수와 콘텐츠 유형별 합계, 맨 위 평균 행.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/count_stats_local.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">학습 횟수 통계 (원 별)</p><p class="card-desc">같은 표 구조를 원 단위로.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/time_stats.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">학습 시간 통계 (지사 별)</p><p class="card-desc">지사별 누적·평균 학습 시간.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/time_stats_local.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">학습 시간 통계 (원 별)</p><p class="card-desc">원 단위 학습 시간 비교.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/student_stats.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">학생 학습 통계 (횟수)</p><p class="card-desc">원 안 학생별 학습 횟수와 원 평균 비교.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/student_stats_time.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">학생 학습 통계 (시간)</p><p class="card-desc">학생별 학습 시간.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/classroom_stats.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">반 별 수업 현황</p><p class="card-desc">반 별 콘텐츠 영상 시청 횟수.</p></div></div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="block-head">
+        <h2><small>LEARNING RESULTS</small>학습 결과 · 팝업<span class="count">8</span></h2>
+        <p>교사가 학생이 실제로 본 화면을 그대로 확인할 수 있도록, 결과 표의 칸을 누르면 학생 화면과 같은 디자인의 팝업이 열립니다.</p>
+      </div>
+      <div class="grid">
+        <div class="card"><div class="card-thumb"><img src="screenshots/result_readers.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">결과 조회 - Reader's Book</p><p class="card-desc">학생 × Book 격자. 완료한 칸만 하늘색으로 채워 진행이 한눈에.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/result_activity.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">결과 조회 - Activity Book</p><p class="card-desc">Book별 액티비티북 학습 결과 (6개월 보관 안내).</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/result_monthly.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">결과 조회 - Monthly Test</p><p class="card-desc">Book별 점수. 점수를 누르면 시험지 팝업.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/study_weekly.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">주차 별 학습 조회</p><p class="card-desc">Book별 획득 스티커 수. 누르면 스티커판 팝업.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/popup_readers.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">팝업 - Reader's Book 녹음</p><p class="card-desc">Book별 녹음 듣기 목록.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/popup_activity.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">팝업 - Activity Book</p><p class="card-desc">학생이 푼 액티비티북 페이지.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/popup_weekly.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">팝업 - 주차 별 스티커북</p><p class="card-desc">학생 화면의 스티커북 나무를 그대로 옮겨 진행도를 표시.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/popup_monthly.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">팝업 - Monthly Test 결과</p><p class="card-desc">시험지 형태의 문항별 채점 결과.</p></div></div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="block-head">
+        <h2><small>NOTICE · BOARD</small>과제 관리 · 게시판<span class="count">10</span></h2>
+      </div>
+      <div class="grid">
+        <div class="card"><div class="card-thumb"><img src="screenshots/send_notice.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">과제 알림 전송</p><p class="card-desc">원·반·학생을 골라 과제 알림 전송.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/notice_list.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">보낸 알림</p><p class="card-desc">발송 일시·Step·Book·주차·수신 인원 이력.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/notice.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">공지사항</p><p class="card-desc">[필독] 공지와 첨부 파일 표시가 있는 목록.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/notice_view.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">공지사항 상세</p><p class="card-desc">본문과 첨부 파일.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/notice_write.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">공지사항 등록</p><p class="card-desc">Quill 에디터와 첨부파일 업로드.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/notice_edit.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">공지사항 수정</p><p class="card-desc">등록 화면을 재사용한 수정 화면.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/study_materials.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">학습 자료</p><p class="card-desc">공개 범위와 분류(교안·부교재·평가자료·미디어)가 있는 자료실.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/study_materials_view.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">학습 자료 상세</p><p class="card-desc">자료 본문과 첨부 파일.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/study_materials_write.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">학습 자료 등록</p><p class="card-desc">에디터와 파일 첨부.</p></div></div>
+        <div class="card"><div class="card-thumb"><img src="screenshots/study_materials_edit.png" alt="" loading="lazy"></div><div class="card-body"><p class="card-title">학습 자료 수정</p><p class="card-desc">등록 화면을 재사용한 수정 화면.</p></div></div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="block-head">
+        <h2><small>HIGHLIGHTS</small>구현 포인트</h2>
+      </div>
+      <ul class="points">
+        <li>
+          <h3>디자인 토큰을 :root에</h3>
+          <p>컬러(<code>--highlight</code>, <code>--blue</code>, <code>--gray50~900</code>)와 콘텐츠 폭(<code>--inner-width: 1440px</code>), 보더 두께를 변수로 모아 디자인과 코드가 같은 이름을 씁니다.</p>
+        </li>
+        <li>
+          <h3>고정 사이드바 레이아웃</h3>
+          <p><code>100dvh</code> 기준으로 사이드바를 고정하고 콘텐츠 영역만 스크롤되게 해, 긴 표를 내려도 메뉴가 항상 보입니다.</p>
+        </li>
+        <li>
+          <h3>해상도 분기</h3>
+          <p>1920px 시안을 기준으로 1600 · 1440 · 1280 · 1024px에서 여백과 입력창 높이(56px → 40px)를 단계적으로 줄였습니다.</p>
+        </li>
+        <li>
+          <h3>Chart.js 혼합 차트</h3>
+          <p>월별 학습량은 막대 + 꺾은선 혼합 차트로, 이번 달 막대만 다른 색으로 강조했습니다.</p>
+        </li>
+        <li>
+          <h3>공통 폼 스타일</h3>
+          <p>input · select · textarea의 높이, 모서리, 포커스 색과 필수 항목 아이콘을 공통 CSS 하나로 관리해 49개 화면의 폼 모양이 같습니다.</p>
+        </li>
+        <li>
+          <h3>화면 단위 CSS 분리</h3>
+          <p>조직 · 회원 · 학습 · 게시판 등 메뉴별로 CSS 폴더를 나눠, 한 화면을 고쳐도 다른 화면에 영향이 가지 않게 했습니다.</p>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <p>BuildUp LITERACY LMS 관리자 화면 퍼블리싱 포트폴리오 · 화면 속 이름·코드·연락처·통계 수치는 모두 예시입니다.</p>
+      <p>© Build Up Literacy · edutem</p>
+    </div>
+  </footer>
+
+</body>
+
+</html>
