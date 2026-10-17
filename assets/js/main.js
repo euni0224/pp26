@@ -137,7 +137,9 @@
         var y = s.scroll();
         nav.classList.toggle('is-scrolled', y > 40);
         gsap.to(nav, { yPercent: (s.direction === 1 && y > 500) ? -100 : 0, duration: .4, ease: 'power3.out', overwrite: 'auto' });
-      }
+      },
+      // #해시로 바로 들어오면 스크롤 변화가 없어 onUpdate가 안 불림 → refresh 때 배경 상태 맞춤
+      onRefresh: function (s) { nav.classList.toggle('is-scrolled', s.scroll() > 40); }
     });
     $$('a[href^="#"]').forEach(function (a) {
       a.addEventListener('click', function (e) {
