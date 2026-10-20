@@ -35,6 +35,26 @@
   }
   applyProfile();
 
+  /* ---------- 위로가기 ---------- */
+  // ScrollSmoother도 네이티브 스크롤 값을 쓰므로 모션 줄이기 환경과 공통으로 처리
+  // 헤더 배경도 여기서 같이 맞춤 (모션 줄이기 환경은 initNav가 실행되지 않음)
+  function initTopButton() {
+    var btn = $('.btn-top'), nav = $('.se-header');
+    if (!btn) return;
+    var ticking = false;
+    function update() {
+      var y = window.scrollY, max = document.documentElement.scrollHeight - window.innerHeight;
+      if (nav) nav.classList.toggle('is-scrolled', y > 40);
+      btn.classList.toggle('is-show', y > window.innerHeight * .8);
+      btn.style.setProperty('--progress', max > 0 ? 100 - (y / max) * 100 : 100);
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  }
+  initTopButton();
+
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!window.gsap || reduced) { var ld = $('.se-loader'); if (ld) ld.remove(); return; }
 
@@ -66,22 +86,23 @@
     });
     document.addEventListener('mouseleave', function () { gsap.to(c, { opacity: 0, duration: .3 }); shown = false; });
 
+    // overwrite 'auto': 빠르게 들어왔다 나가면 길이가 다른 트윈이 겹쳐 라벨이 남는 문제 방지
     $$('[data-cursor]').forEach(function (el) {
       el.addEventListener('mouseenter', function () {
         label.textContent = el.dataset.cursor;
         c.classList.add('is-label');
-        gsap.to(c, { width: 104, height: 104, marginLeft: -52, marginTop: -52, backgroundColor: el.dataset.ac || '#ff5b14', duration: .45, ease: 'expo.out' });
-        gsap.to(label, { opacity: 1, color: el.dataset.bg || '#fff', duration: .3 });
+        gsap.to(c, { width: 104, height: 104, marginLeft: -52, marginTop: -52, backgroundColor: el.dataset.ac || '#ff5b14', duration: .45, ease: 'expo.out', overwrite: 'auto' });
+        gsap.to(label, { opacity: 1, color: el.dataset.bg || '#fff', duration: .3, overwrite: 'auto' });
       });
       el.addEventListener('mouseleave', function () {
         c.classList.remove('is-label');
-        gsap.to(c, { width: 14, height: 14, marginLeft: -7, marginTop: -7, backgroundColor: '#ffffff', duration: .45, ease: 'expo.out' });
-        gsap.to(label, { opacity: 0, duration: .2 });
+        gsap.to(c, { width: 14, height: 14, marginLeft: -7, marginTop: -7, backgroundColor: '#ffffff', duration: .45, ease: 'expo.out', overwrite: 'auto' });
+        gsap.to(label, { opacity: 0, duration: .2, overwrite: 'auto' });
       });
     });
     $$('.link-menu, .link-logo, .link-contact').forEach(function (el) {
-      el.addEventListener('mouseenter', function () { gsap.to(c, { scale: 2.6, duration: .35 }); });
-      el.addEventListener('mouseleave', function () { gsap.to(c, { scale: 1, duration: .35 }); });
+      el.addEventListener('mouseenter', function () { gsap.to(c, { scale: 2.6, duration: .35, overwrite: 'auto' }); });
+      el.addEventListener('mouseleave', function () { gsap.to(c, { scale: 1, duration: .35, overwrite: 'auto' }); });
     });
   }
 
@@ -223,6 +244,18 @@
   }
 
   /* ---------- 프로젝트 ---------- */
+  // clip-path를 'none'으로 트윈하면 round 값이 0으로 줄어 모서리가 각지고 그림자가 잘림
+  // → 둥근 모서리를 유지한 채 펼친 뒤 clip-path를 풀고 그림자를 서서히 보여줌
+  var SHADOW = '0px 30px 80px rgba(0, 0, 0, 0.22)', SHADOW_0 = '0px 30px 80px rgba(0, 0, 0, 0)';
+  function revealMedia(media, from, dur, st) {
+    gsap.fromTo(media, { clipPath: from, boxShadow: SHADOW_0 }, {
+      clipPath: 'inset(0% 0% 0% 0% round 18px)', duration: dur, ease: 'expo.out', scrollTrigger: st,
+      onComplete: function () {
+        gsap.set(media, { clipPath: 'none' });
+        gsap.to(media, { boxShadow: SHADOW, duration: .6, ease: 'power2.out', clearProps: 'boxShadow' });
+      }
+    });
+  }
   function initWork(mm) {
     var work = $('.se-work'), track = $('.project-area'), panels = $$('.link-project');
     var bar = $('.progress-area i'), cur = $('.work-current');
@@ -264,11 +297,13 @@
           }
         });
         if (i === 0) {
-          gsap.from(media, { clipPath: 'inset(0 0 100% 0 round 18px)', duration: 1.4, ease: 'expo.out', scrollTrigger: { trigger: pin, start: 'top 75%' } });
+          revealMedia(media, 'inset(0% 0% 100% 0% round 18px)', 1.4, { trigger: pin, start: 'top 75%' });
           gsap.from(img, { scale: 1.35, duration: 1.8, ease: 'expo.out', scrollTrigger: { trigger: pin, start: 'top 75%' } });
           gsap.from(info, { y: 50, autoAlpha: 0, duration: .9, stagger: .07, ease: 'power3.out', scrollTrigger: { trigger: pin, start: 'top 70%' } });
         } else {
-          gsap.fromTo(media, { clipPath: 'inset(0 100% 0 0 round 18px)' }, { clipPath: 'inset(0 0% 0 0 round 18px)', ease: 'none', scrollTrigger: { trigger: p, containerAnimation: hz, start: 'left 95%', end: 'left 35%', scrub: true } });
+          // 다 펼쳐지면 clip-path를 풀어 그림자가 보이게 함
+          gsap.fromTo(media, { clipPath: 'inset(0% 100% 0% 0% round 18px)' }, { clipPath: 'inset(0% 0% 0% 0% round 18px)', ease: 'none', scrollTrigger: { trigger: p, containerAnimation: hz, start: 'left 95%', end: 'left 35%', scrub: true,
+            onLeave: function () { gsap.set(media, { clipPath: 'none' }); } } });
           gsap.fromTo(img, { scale: 1.35, xPercent: 8 }, { scale: 1, xPercent: 0, ease: 'none', scrollTrigger: { trigger: p, containerAnimation: hz, start: 'left right', end: 'center center', scrub: true } });
           gsap.from(info, { x: 90, autoAlpha: 0, duration: .9, stagger: .06, ease: 'power3.out', scrollTrigger: { trigger: p, containerAnimation: hz, start: 'left 80%', toggleActions: 'play none none reverse' } });
         }
@@ -280,7 +315,7 @@
     mm.add('(max-width: 899px)', function () {
       panels.forEach(function (p) {
         var media = $('.media-box', p);
-        gsap.from(media, { clipPath: 'inset(100% 0 0 0 round 18px)', duration: 1.3, ease: 'expo.out', scrollTrigger: { trigger: p, start: 'top 85%' } });
+        revealMedia(media, 'inset(100% 0% 0% 0% round 18px)', 1.3, { trigger: p, start: 'top 85%' });
         gsap.from($('img', media), { scale: 1.3, duration: 1.6, ease: 'expo.out', scrollTrigger: { trigger: p, start: 'top 85%' } });
         gsap.from($$('.info-box > *', p), { y: 40, autoAlpha: 0, duration: .8, stagger: .06, ease: 'power3.out', scrollTrigger: { trigger: p, start: 'top 70%' } });
       });
@@ -352,6 +387,7 @@
       .call(function () { prompt.classList.remove('is-typing'); })
       .to(rest, { autoAlpha: 1, y: 0, duration: .45, stagger: .45, ease: 'power2.out' }, '+=.3');
 
+    gsap.from('.ai-quote > *', { y: 40, autoAlpha: 0, duration: .9, stagger: .12, ease: 'power3.out', scrollTrigger: { trigger: '.ai-quote', start: 'top 82%' } });
     gsap.from('.ai-box', { y: 60, autoAlpha: 0, duration: .9, stagger: .1, ease: 'power3.out', scrollTrigger: { trigger: '.ai-list', start: 'top 80%' } });
   }
 

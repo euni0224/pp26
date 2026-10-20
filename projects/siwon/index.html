@@ -36,23 +36,8 @@
   --f-body:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
   --f-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
   --ls:-0.02em; --gutter:clamp(16px,4vw,48px); --max:1120px;
+  color-scheme:light;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#111316; --surface:#1A1D22; --sunk:#22262C; --line:#2C3138;
-  --ink:#F3F4F5; --ink2:#C9CDD2; --ink3:#8E959C; --ink4:#5A6067;
-  --blue:#7C9BFF; --blue-soft:#1D2742; --blue-ink:#A9BDFF;
-  --ok:#5FD463; --bad:#FF6B72;
-  --bubble:#2A2F36; --bubble-me:#1F2A44;
-  --code-bg:#0B0C0E; --code-ink:#E9EBED; --code-dim:#7A8087; --code-key:#9DB5FF; --code-val:#FFC98A;
-  color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#111316; --surface:#1A1D22; --sunk:#22262C; --line:#2C3138;
-  --ink:#F3F4F5; --ink2:#C9CDD2; --ink3:#8E959C; --ink4:#5A6067;
-  --blue:#7C9BFF; --blue-soft:#1D2742; --blue-ink:#A9BDFF;
-  --ok:#5FD463; --bad:#FF6B72;
-  --bubble:#2A2F36; --bubble-me:#1F2A44;
-  --code-bg:#0B0C0E; --code-ink:#E9EBED; --code-dim:#7A8087; --code-key:#9DB5FF; --code-val:#FFC98A;
-  color-scheme:dark}
 
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.65;letter-spacing:var(--ls);word-break:keep-all;-webkit-font-smoothing:antialiased}
@@ -405,5 +390,6 @@ pre .c{color:var(--code-dim)}pre .k{color:var(--code-key)}pre .v{color:var(--cod
   </footer>
 </div>
 
+<script src="../../assets/js/lightbox.js" defer></script>
 </body>
 </html>
