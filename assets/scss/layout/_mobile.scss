@@ -74,8 +74,53 @@ $order: (
     }
   }
 
-  .p-grid .strip-list {
-    max-height: 520px;
+  // WORK/GRID → 가로 스와이프 카드. 가운데 온 카드(.is-center)가 호버 역할
+  .p-grid {
+    .strip-list {
+      flex-direction: row;
+      gap: 8px;
+      padding: 12px 11%;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
+    }
+
+    .btn-strip,
+    .btn-strip.is-on {
+      flex: 0 0 78%;
+      height: auto;
+      aspect-ratio: 4 / 3;
+      scroll-snap-align: center;
+      transform: scale(.92);
+      opacity: .55;
+      transition: transform .5s var(--ease), opacity .5s;
+
+      img {
+        filter: grayscale(1);
+      }
+    }
+
+    .btn-strip.is-center {
+      transform: none;
+      opacity: 1;
+
+      img {
+        filter: none;
+      }
+    }
+
+    .btn-strip.is-on {
+      outline: 2px solid var(--accent);
+      outline-offset: -2px;
+    }
+  }
+
+  .strip-count {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 12px 10px;
+    color: var(--grey);
+    font-variant-numeric: tabular-nums;
   }
 
   .info-keys {

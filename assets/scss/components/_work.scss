@@ -1,3 +1,5 @@
+@use '../abstracts' as *;
+
 // WORK/LIST
 .work-list {
   padding: 8px 8px 12px;
@@ -12,13 +14,23 @@
   color: var(--grey);
   transition: color .25s;
 
-  .work-list:hover &,
   .has-selected & {
     color: var(--faint);
   }
 
-  .work-list &:hover,
-  &.is-on {
+  // 목록에 마우스를 올리면 나머지는 흐리게
+  @include can-hover {
+    .work-list:hover & {
+      color: var(--faint);
+    }
+
+    .work-list &:hover {
+      color: var(--fg);
+    }
+  }
+
+  &:active,
+  .work-list &.is-on {
     color: var(--fg);
   }
 
@@ -73,7 +85,6 @@
     filter: grayscale(.4);
   }
 
-  &:hover,
   &.is-on {
     height: 200px;
 
@@ -81,6 +92,19 @@
       filter: none;
     }
   }
+
+  @include hover {
+    height: 200px;
+
+    img {
+      filter: none;
+    }
+  }
+}
+
+// 모바일 카드 번호 표시 (layout/_mobile.scss에서만 보임)
+.strip-count {
+  display: none;
 }
 
 // WORK/DETAILS
@@ -170,8 +194,10 @@
       aspect-ratio: 16 / 9;
     }
 
-    &:hover img {
-      transform: scale(1.05);
+    @include hover {
+      img {
+        transform: scale(1.05);
+      }
     }
   }
 

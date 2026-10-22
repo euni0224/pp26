@@ -27,6 +27,28 @@
   }
 }
 
+// 마우스처럼 호버가 되는 기기에서만 (터치에서 호버가 눌린 채 남는 문제 방지)
+@mixin can-hover {
+  @media (hover: hover) {
+    @content;
+  }
+}
+
+@mixin hover {
+  @include can-hover {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+// 터치 기기 전용
+@mixin touch {
+  @media (hover: none) {
+    @content;
+  }
+}
+
 // 12칸 그리드 위치: 시작 칸, 차지하는 칸 수, top
 @mixin grid-pos($c, $w, $t: null) {
   --c: #{$c};

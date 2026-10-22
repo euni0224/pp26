@@ -25,9 +25,22 @@
     text-align: center;
     transition: background-color .3s, color .3s;
 
-    &:hover {
+    @include hover {
       background: var(--accent);
       color: #fff;
     }
+  }
+
+  // 터치: 패널이 보이면 타일이 순서대로 한 번 반짝임 (stack-wave.js가 --i · .is-wave 지정)
+  &.is-wave li {
+    animation: tile-wave .9s var(--ease) both;
+    animation-delay: calc(var(--i) * 70ms);
+  }
+}
+
+@keyframes tile-wave {
+  40% {
+    background: var(--accent);
+    color: #fff;
   }
 }

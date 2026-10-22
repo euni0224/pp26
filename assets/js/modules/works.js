@@ -40,8 +40,32 @@ export function selectWork(i) {
   ).join('');
 
   const behavior = reduced ? 'auto' : 'smooth';
-  if (deskMQ.matches) stripEl.scrollTo({ top: stripEl.children[i].offsetTop - 8, behavior });
-  else detailP.scrollIntoView({ behavior, block: 'start' });
+  const card = stripEl.children[i];
+  if (deskMQ.matches) {
+    stripEl.scrollTo({ top: card.offsetTop - 8, behavior });
+  } else {
+    // 가로 카드에서도 고른 작업을 가운데로
+    stripEl.scrollTo({ left: card.offsetLeft - (stripEl.clientWidth - card.offsetWidth) / 2, behavior });
+    detailP.scrollIntoView({ behavior, block: 'start' });
+  }
+}
+
+// 모바일 가로 카드: 가운데 온 카드를 표시하고 번호를 갱신
+function initCarousel() {
+  const count = document.createElement('p');
+  count.className = 'strip-count';
+  count.setAttribute('aria-hidden', 'true');
+  count.innerHTML = '<span class="js-strip-no">01 / ' + pad(WORKS.length) + '</span><span>Swipe ←→</span>';
+  stripEl.after(count);
+  const no = $('.js-strip-no', count);
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      e.target.classList.toggle('is-center', e.isIntersecting);
+      if (e.isIntersecting) no.textContent = pad(+e.target.dataset.i + 1) + ' / ' + pad(WORKS.length);
+    });
+  }, { root: stripEl, rootMargin: '0px -30%', threshold: .5 });
+  $$('.btn-strip', stripEl).forEach((s) => io.observe(s));
 }
 
 export function closeWork() {
@@ -75,6 +99,7 @@ export function initWorks() {
     s.innerHTML = '<img src="' + w.imgs[0] + '" alt="" loading="lazy">';
     stripEl.appendChild(s);
   });
+  initCarousel();
 
   document.addEventListener('click', (e) => {
     const b = e.target.closest('.btn-work, .btn-strip');

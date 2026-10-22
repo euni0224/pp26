@@ -1,4 +1,4 @@
-import { $, $$, pad } from './utils.js';
+import { touchMQ, $, $$, pad } from './utils.js';
 import { pointer } from './pointer.js';
 
 const stat = {};
@@ -73,7 +73,29 @@ export function initSession() {
 
   addEventListener('click', () => { stat.clicks.textContent = ++counts.clicks; });
   addEventListener('keydown', () => { stat.keys.textContent = ++counts.keys; });
+
+  if (touchMQ.matches) {
+    useTouchLabels();
+    return;
+  }
   document.addEventListener('pointerover', (e) => {
     if (e.target.closest('a, button')) stat.hovers.textContent = ++counts.hovers;
   });
+}
+
+// 터치 기기: 마우스 · 호버 항목을 손가락 · 스크롤 기준으로 바꿔 표시
+function useTouchLabels() {
+  const label = (key, text) => { stat[key].previousElementSibling.textContent = text; };
+  label('speed', 'Touch speed :');
+  label('dist', 'Distance swiped :');
+  label('clicks', 'Taps :');
+  label('hovers', 'Scrolled :');
+  stat.hovers.textContent = '0 px';
+
+  let lastY = scrollY, scrolled = 0;
+  addEventListener('scroll', () => {
+    scrolled += Math.abs(scrollY - lastY);
+    lastY = scrollY;
+    stat.hovers.textContent = Math.round(scrolled).toLocaleString('en') + ' px';
+  }, { passive: true });
 }

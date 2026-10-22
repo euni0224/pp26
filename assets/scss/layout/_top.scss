@@ -34,8 +34,13 @@
   @include head-btn;
   transition: background-color .3s;
 
-  &:hover,
-  &[aria-pressed="true"] {
+  &[aria-pressed="true"],
+  &:active {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  @include hover {
     background: var(--accent);
     color: #fff;
   }

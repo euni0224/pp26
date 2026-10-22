@@ -61,7 +61,12 @@
 .panel-toggle {
   transition: background-color .3s;
 
-  &:hover {
+  &:active {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  @include hover {
     background: var(--accent);
     color: #fff;
   }

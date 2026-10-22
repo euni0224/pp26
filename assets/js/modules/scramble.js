@@ -1,4 +1,4 @@
-import { reduced, $$ } from './utils.js';
+import { reduced, touchMQ, $$ } from './utils.js';
 
 const GLYPHS = '!<>-_\\/[]{}—=+*^?#$%&@ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 const rand = () => GLYPHS[(Math.random() * GLYPHS.length) | 0];
@@ -23,12 +23,27 @@ export function gibberish(len) {
   return s;
 }
 
-// [data-scramble] 글자는 링크 · 버튼에 마우스를 올리면 섞였다 돌아옴
+// [data-scramble] 글자는 링크 · 버튼에 마우스를 올리면 섞였다 돌아옴.
+// 터치 기기는 호버 대신 탭할 때 실행
 export function initScramble() {
+  const touch = touchMQ.matches;
   $$('[data-scramble]').forEach((el) => {
     const text = el.textContent;
     el.setAttribute('aria-label', text);
     const host = el.closest('a, button') || el;
-    host.addEventListener('pointerenter', () => scramble(el, text, 400));
+    host.addEventListener(touch ? 'pointerdown' : 'pointerenter', () => scramble(el, text, 400));
   });
+}
+
+// 터치 기기: 부팅이 끝난 뒤, 글자가 화면에 처음 들어올 때 한 번 실행
+export function observeScramble() {
+  if (!touchMQ.matches) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      scramble(e.target, e.target.getAttribute('aria-label'), 600);
+      io.unobserve(e.target);
+    });
+  }, { threshold: 1 });
+  $$('[data-scramble]').forEach((el) => io.observe(el));
 }

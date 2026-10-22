@@ -29,7 +29,14 @@
     transition: background-color .3s;
   }
 
-  &:hover .chip-icon {
+  @include hover {
+    .chip-icon {
+      background: var(--accent);
+      color: #fff;
+    }
+  }
+
+  &:active .chip-icon {
     background: var(--accent);
     color: #fff;
   }
