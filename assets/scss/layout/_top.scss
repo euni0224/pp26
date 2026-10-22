@@ -1,0 +1,56 @@
+@use '../abstracts' as *;
+
+.se-top {
+  position: fixed;
+  top: 20px;
+  left: var(--x);
+  right: var(--x);
+  z-index: 40;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  pointer-events: none;
+
+  >* {
+    pointer-events: auto;
+  }
+}
+
+.top-left {
+  display: flex;
+  gap: 8px;
+}
+
+// 우측 도구 버튼 묶음 (그리드 · 레이아웃 · 테마)
+.tool-area {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 3px;
+  background: var(--head-bg);
+}
+
+.btn-tool {
+  @include head-btn;
+  transition: background-color .3s;
+
+  &:hover,
+  &[aria-pressed="true"] {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .icon-sun,
+  .dark & .icon-moon {
+    display: none;
+  }
+
+  .dark & .icon-sun {
+    display: block;
+  }
+}

@@ -1,0 +1,33 @@
+@use '../abstracts' as *;
+
+// 아래 줄로 갈수록 흐려지는 기술 타일
+.stack-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  padding: 8px;
+  -webkit-mask-image: linear-gradient(#000 60%, transparent);
+  mask-image: linear-gradient(#000 60%, transparent);
+
+  @include phone {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  li {
+    display: grid;
+    place-items: center;
+    height: 58px;
+    padding: 4px;
+    border-radius: 2px;
+    background: var(--tile);
+    color: var(--grey);
+    font-size: 11px;
+    text-align: center;
+    transition: background-color .3s, color .3s;
+
+    &:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+  }
+}

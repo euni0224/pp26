@@ -1,0 +1,38 @@
+.about-box {
+  padding: 14px 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  color: color-mix(in srgb, var(--fg) 70%, transparent);
+  line-height: 1.35;
+
+  .teaser {
+    color: var(--grey);
+  }
+
+  p a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+}
+
+.career-list {
+  li {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0 10px;
+    padding: 8px 0;
+    border-top: 1px solid color-mix(in srgb, var(--fg) 10%, transparent);
+  }
+
+  b {
+    font-weight: 500;
+    color: var(--fg);
+  }
+
+  small {
+    grid-column: 1 / -1;
+    font-size: 11px;
+    color: var(--grey);
+  }
+}

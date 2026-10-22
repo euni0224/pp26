@@ -1,0 +1,87 @@
+// BIOS 부팅 화면
+.se-boot {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  padding: 20px var(--x);
+  background: #dddddd;
+  color: rgba(0, 0, 0, .5);
+  font-size: 13px;
+  line-height: 1.4;
+  cursor: pointer;
+
+  .dark & {
+    background: #1a1a1a;
+    color: rgba(255, 255, 255, .5);
+  }
+
+  .is-booted & {
+    display: none;
+  }
+
+  p {
+    min-height: 1.4em;
+    white-space: pre;
+  }
+
+  .key {
+    padding: 0 2px;
+    background: #000;
+    color: #fff;
+
+    .dark & {
+      background: #fff;
+      color: #000;
+    }
+  }
+
+  .caret {
+    display: inline-block;
+    width: .55ch;
+    height: 1em;
+    margin-left: 1px;
+    vertical-align: -2px;
+    background: currentColor;
+    animation: blink 1s steps(1) infinite;
+  }
+
+  .ok {
+    color: var(--accent);
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+// 부팅 후 등장
+.se-top,
+.se-bottom,
+.panel,
+.info,
+.se-title {
+  transition: opacity .6s, transform .9s var(--ease-out);
+}
+
+html:not(.is-booted) {
+  .se-top {
+    transform: translateY(-80px);
+  }
+
+  .se-bottom {
+    transform: translateY(80px);
+  }
+
+  .panel,
+  .info,
+  .se-title {
+    opacity: 0;
+    transform: scale(.96);
+  }
+}
+
+.panel {
+  transition-delay: var(--delay, 0s);
+}

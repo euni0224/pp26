@@ -1,0 +1,12 @@
+{
+  "name": "pp26",
+  "private": true,
+  "description": "Web Publisher Portfolio",
+  "scripts": {
+    "build:css": "sass assets/scss/main.scss assets/css/main.css --no-source-map",
+    "watch:css": "sass assets/scss/main.scss assets/css/main.css --watch"
+  },
+  "devDependencies": {
+    "sass": "^1.83.0"
+  }
+}

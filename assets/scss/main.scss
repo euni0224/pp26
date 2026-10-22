@@ -1,0 +1,27 @@
+// 빌드: npm run build:css  →  assets/css/main.css
+
+@use 'base/fonts';
+@use 'base/tokens';
+@use 'base/reset';
+@use 'base/base';
+
+@use 'layout/background';
+@use 'layout/top';
+
+@use 'components/chip';
+@use 'components/panel';
+@use 'components/work';
+@use 'components/about';
+@use 'components/now';
+@use 'components/stack';
+@use 'components/stats';
+@use 'components/info';
+
+@use 'layout/bottom';
+
+@use 'components/cursor';
+@use 'components/boot';
+
+// 화면 크기별 배치는 마지막에 둬서 위 기본값을 덮어쓰게 함
+@use 'layout/desktop';
+@use 'layout/mobile';

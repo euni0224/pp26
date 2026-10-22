@@ -1,0 +1,92 @@
+$corner-size: 6px;
+$corner-offset: -4px;
+
+// 좌표가 붙은 사각 커서
+.se-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  pointer-events: none;
+}
+
+.cursor-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  border: 1px solid var(--accent);
+
+  span {
+    position: absolute;
+    top: 100%;
+    left: 100%;
+    margin-left: 2px;
+    font-size: 10px;
+    line-height: 1.1;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+// 호버한 요소를 감싸는 네 모서리
+.cursor-frame {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 199;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .25s;
+
+  &.is-on {
+    opacity: 1;
+  }
+
+  i {
+    position: absolute;
+    width: $corner-size;
+    height: $corner-size;
+    border-color: var(--accent);
+    border-style: solid;
+    border-width: 0;
+
+    &:nth-child(1) {
+      top: $corner-offset;
+      left: $corner-offset;
+      border-top-width: 1px;
+      border-left-width: 1px;
+    }
+
+    &:nth-child(2) {
+      top: $corner-offset;
+      right: $corner-offset;
+      border-top-width: 1px;
+      border-right-width: 1px;
+    }
+
+    &:nth-child(3) {
+      bottom: $corner-offset;
+      left: $corner-offset;
+      border-bottom-width: 1px;
+      border-left-width: 1px;
+    }
+
+    &:nth-child(4) {
+      bottom: $corner-offset;
+      right: $corner-offset;
+      border-bottom-width: 1px;
+      border-right-width: 1px;
+    }
+  }
+}
+
+// 마우스가 있는 기기에서만 표시
+.se-cursor,
+.cursor-frame {
+  display: none;
+
+  @media (pointer: fine) {
+    display: block;
+  }
+}

@@ -1,0 +1,32 @@
+.se-bottom {
+  position: fixed;
+  left: var(--x);
+  right: var(--x);
+  bottom: 20px;
+  z-index: 30;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 8px;
+  pointer-events: none;
+
+  >* {
+    pointer-events: auto;
+  }
+}
+
+.link-area {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.credit {
+  color: var(--grey);
+
+  a {
+    color: var(--fg);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+}

@@ -1,0 +1,75 @@
+// WebGL 캔버스
+.se-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .no-gl & {
+    background: radial-gradient(40% 40% at 50% 50%, color-mix(in srgb, var(--accent) 40%, transparent), transparent 70%);
+  }
+}
+
+// 은은한 바둑판 + [G]로 켜는 12칸 컬럼
+.se-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 19.6px 19.6px;
+
+  .col-area {
+    position: absolute;
+    inset: 0 var(--x);
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--gap);
+    opacity: 0;
+    transition: opacity .4s;
+
+    .show-grid & {
+      opacity: 1;
+    }
+  }
+
+  .col-area i {
+    border-inline: 1px solid color-mix(in srgb, var(--fg) 12%, transparent);
+    background: color-mix(in srgb, var(--fg) 3%, transparent);
+  }
+}
+
+// 패널 뒤 블랙레터 제목
+.se-title {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  font-family: 'UnifrakturMaguntia', serif;
+  font-size: clamp(80px, 17vw, 300px);
+  line-height: .78;
+  text-transform: none;
+  letter-spacing: -.01em;
+  color: var(--fg);
+  white-space: nowrap;
+
+  span:first-child {
+    transform: translateX(-12%);
+  }
+
+  span:last-child {
+    transform: translateX(6%);
+  }
+}

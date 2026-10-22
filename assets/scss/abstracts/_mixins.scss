@@ -1,0 +1,60 @@
+@use 'variables' as *;
+
+// 데스크톱: 패널을 12칸 그리드 위에 흩어 배치
+@mixin desk {
+  @media (min-width: $desk-min-w) and (min-height: $desk-min-h) {
+    @content;
+  }
+}
+
+// 데스크톱이지만 세로가 낮은 화면
+@mixin desk-short {
+  @media (min-width: $desk-min-w) and (min-height: $desk-min-h) and (max-height: $desk-tall-h - 1) {
+    @content;
+  }
+}
+
+// 모바일 · 작은 화면: 패널을 세로로 쌓음
+@mixin stacked {
+  @media (max-width: $desk-min-w - 1), (max-height: $desk-min-h - 1) {
+    @content;
+  }
+}
+
+@mixin phone {
+  @media (max-width: $phone-max) {
+    @content;
+  }
+}
+
+// 12칸 그리드 위치: 시작 칸, 차지하는 칸 수, top
+@mixin grid-pos($c, $w, $t: null) {
+  --c: #{$c};
+  --w: #{$w};
+
+  @if $t {
+    --t: #{$t};
+  }
+}
+
+// --c · --w 값으로 left · width 계산
+@mixin grid-span {
+  left: calc(var(--x) + (var(--c) - 1) * (var(--col) + var(--gap)));
+  width: calc(var(--w) * var(--col) + (var(--w) - 1) * var(--gap));
+}
+
+@mixin glass($blur: 14px) {
+  -webkit-backdrop-filter: blur($blur);
+  backdrop-filter: blur($blur);
+}
+
+// 검은 헤더 위 작은 정사각 버튼 (핸들 · 토글 · 도구)
+@mixin head-btn {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--head-fg) 14%, transparent);
+  color: var(--head-fg);
+}

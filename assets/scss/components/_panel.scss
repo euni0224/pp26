@@ -1,0 +1,127 @@
+@use '../abstracts' as *;
+
+// 창 패널: 위치는 --c · --w · --t, 드래그 이동량은 --dx · --dy
+.panel {
+  --dx: 0px;
+  --dy: 0px;
+  position: absolute;
+  @include grid-span;
+  top: var(--t);
+  translate: var(--dx) var(--dy);
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+  overflow: hidden;
+
+  &.is-front {
+    z-index: 5;
+  }
+
+  &.is-dragging {
+    z-index: 6;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, .18);
+  }
+}
+
+.panel-head {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: var(--head);
+  padding: 4px;
+  background: var(--head-bg);
+  color: var(--head-fg);
+  transition: background-color .5s, color .5s;
+
+  h2 {
+    flex: 1;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+  }
+}
+
+.panel-handle,
+.panel-toggle {
+  flex: none;
+  @include head-btn;
+}
+
+.panel-handle {
+  cursor: grab;
+  touch-action: none;
+
+  .is-dragging & {
+    cursor: grabbing;
+  }
+}
+
+// + / − 토글
+.panel-toggle {
+  transition: background-color .3s;
+
+  &:hover {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  i {
+    position: relative;
+    width: 10px;
+    height: 1px;
+    background: currentColor;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: currentColor;
+      transform: rotate(90deg);
+      transition: transform .4s var(--ease);
+    }
+  }
+
+  .panel.is-open & i::after {
+    transform: rotate(0deg);
+  }
+}
+
+.panel-body {
+  position: relative;
+  background: var(--body-bg);
+  @include glass;
+  transition: background-color .5s;
+}
+
+// 접히는 본문: grid-rows 0fr ↔ 1fr
+.panel-fold {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .6s var(--ease);
+
+  .panel.is-open & {
+    grid-template-rows: 1fr;
+  }
+
+  >.panel-body {
+    min-height: 0;
+    overflow: hidden;
+  }
+}
+
+// 선택 전 비활성 패널: 빗금 헤더
+.panel.is-empty {
+  .panel-head {
+    background: repeating-linear-gradient(-45deg, color-mix(in srgb, var(--head-bg) 45%, transparent) 0 1px, color-mix(in srgb, var(--head-bg) 20%, transparent) 1px 5px);
+    color: var(--head-fg);
+  }
+
+  .panel-handle {
+    background: transparent;
+  }
+
+  .panel-toggle {
+    visibility: hidden;
+  }
+}

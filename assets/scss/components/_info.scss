@@ -1,0 +1,26 @@
+@use '../abstracts' as *;
+
+// 회색 정보 블록 (NETWORK · SESSION · SYSTEM · SHORTCUTS)
+.info {
+  position: absolute;
+  z-index: 0;
+  display: grid;
+  grid-template-columns: var(--col) 1fr;
+  gap: var(--gap);
+  @include grid-span;
+  font-size: 10px;
+  line-height: 1.25;
+  color: var(--faint);
+  pointer-events: none;
+
+  dl {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: 10px;
+  }
+
+  dd {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+}

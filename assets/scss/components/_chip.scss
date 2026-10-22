@@ -1,0 +1,46 @@
+@use '../abstracts' as *;
+
+// 상단 · 하단 · 상세 패널에서 쓰는 알약형 버튼
+.chip {
+  display: inline-flex;
+  align-items: center;
+  height: var(--head);
+  padding: 0 8px;
+  border-radius: 3px;
+  background: var(--body-bg);
+  @include glass(12px);
+  color: var(--grey);
+  white-space: nowrap;
+
+  &.is-solid {
+    background: var(--head-bg);
+    color: var(--head-fg);
+  }
+
+  .chip-icon {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    margin: 0 -2px 0 12px;
+    border-radius: 2px;
+    background: var(--head-bg);
+    color: var(--head-fg);
+    transition: background-color .3s;
+  }
+
+  &:hover .chip-icon {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  &.is-light .chip-icon {
+    background: var(--tile);
+    color: var(--fg);
+  }
+}
+
+a.chip,
+button.chip {
+  color: var(--fg);
+}
