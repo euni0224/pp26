@@ -1115,37 +1115,37 @@ html:not(.is-booted) .se-title {
   .panel-handle {
     visibility: hidden;
   }
-  .p-list {
+  .p-about {
     order: 1;
   }
-  .p-detail {
+  .p-stats {
     order: 2;
   }
-  .p-images {
+  .p-grid {
     order: 3;
   }
-  .p-grid {
+  .p-detail {
     order: 4;
   }
-  .p-about {
+  .p-images {
     order: 5;
   }
-  .info-session {
+  .p-list {
     order: 6;
   }
   .p-stack {
     order: 7;
   }
-  .info-network {
+  .p-now {
     order: 8;
   }
-  .p-now {
+  .info-session {
     order: 9;
   }
-  .info-system {
+  .info-network {
     order: 10;
   }
-  .p-stats {
+  .info-system {
     order: 11;
   }
   .p-grid .strip-list {

@@ -2,7 +2,7 @@ import { initPointer } from './modules/pointer.js';
 import { initScramble, observeScramble } from './modules/scramble.js';
 import { initPanels } from './modules/panels.js';
 import { initWorks } from './modules/works.js';
-import { initAbout } from './modules/about.js';
+import { initAbout, observeAbout } from './modules/about.js';
 import { initTools } from './modules/tools.js';
 import { initSession } from './modules/session.js';
 import { initCursor } from './modules/cursor.js';
@@ -26,5 +26,6 @@ initBoot(() => {
   countUp();
   observeScramble();
   observeStack();
+  observeAbout();
 });
 initBackground();

@@ -1,4 +1,4 @@
-import { reduced, $, $$ } from './utils.js';
+import { reduced, deskMQ, $, $$ } from './utils.js';
 import { scramble, gibberish } from './scramble.js';
 import { bringFront } from './panels.js';
 
@@ -17,6 +17,17 @@ export function setAbout(open) {
 }
 
 export const toggleAbout = () => setAbout(!aboutP.classList.contains('is-open'));
+
+// 모바일에선 ABOUT이 맨 위라, 화면에 들어오면 자동으로 열며 해독
+export function observeAbout() {
+  if (deskMQ.matches) return;
+  const io = new IntersectionObserver(([e]) => {
+    if (!e.isIntersecting) return;
+    setAbout(true);
+    io.disconnect();
+  }, { threshold: .6 });
+  io.observe(aboutP);
+}
 
 export function initAbout() {
   aboutP = $('.p-about');

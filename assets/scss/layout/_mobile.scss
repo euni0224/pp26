@@ -1,19 +1,19 @@
 @use 'sass:list';
 @use '../abstracts' as *;
 
-// 화면 위에서부터 보여줄 순서
+// 화면 위에서부터 보여줄 순서: 소개 → 숫자 → 작업(카드 → 상세 → 목록) → 스택 → 연락 → 장식 정보
 $order: (
-  '.p-list',
+  '.p-about',
+  '.p-stats',
+  '.p-grid',
   '.p-detail',
   '.p-images',
-  '.p-grid',
-  '.p-about',
-  '.info-session',
+  '.p-list',
   '.p-stack',
-  '.info-network',
   '.p-now',
-  '.info-system',
-  '.p-stats'
+  '.info-session',
+  '.info-network',
+  '.info-system'
 );
 
 // 모바일 · 작은 화면: 패널을 세로로 쌓고 드래그는 끔
