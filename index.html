@@ -1,436 +1,2039 @@
 <!DOCTYPE html>
-<html lang="ko" class="no-js">
+<html lang="ko">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Web Publisher Portfolio</title>
-  <meta name="description" content="웹 퍼블리싱 4년 10개월, 교육 서비스 125개 화면과 기업 사이트를 만든 웹 퍼블리셔 포트폴리오">
+  <title>홍경은 — Web Publisher</title>
+  <meta name="description" content="웹 퍼블리싱 4년 10개월, 교육 서비스 125개 화면과 기업 사이트를 만든 웹 퍼블리셔 홍경은">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicon-512.png">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <link rel="canonical" href="https://euni0224.github.io/pp26/">
-  <meta name="theme-color" content="#f3f2ee">
+  <meta name="theme-color" content="#ececec">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Web Publisher Portfolio">
   <meta property="og:locale" content="ko_KR">
   <meta property="og:url" content="https://euni0224.github.io/pp26/">
-  <meta property="og:title" content="Web Publisher Portfolio">
+  <meta property="og:title" content="홍경은 — Web Publisher">
   <meta property="og:description" content="웹 퍼블리싱 4년 10개월, 교육 서비스 125개 화면과 기업 사이트를 만든 웹 퍼블리셔 포트폴리오">
   <meta property="og:image" content="https://euni0224.github.io/pp26/assets/img/og.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Web Publisher Portfolio">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Web Publisher Portfolio">
+  <meta name="twitter:title" content="홍경은 — Web Publisher">
   <meta name="twitter:description" content="웹 퍼블리싱 4년 10개월, 교육 서비스 125개 화면과 기업 사이트를 만든 웹 퍼블리셔 포트폴리오">
   <meta name="twitter:image" content="https://euni0224.github.io/pp26/assets/img/og.jpg">
-  <link rel="stylesheet" href="assets/css/main.css">
-  <script>document.documentElement.classList.replace('no-js', 'js'); if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('reduced');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('theme');
+        var dark = stored === 'dark' || (stored !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.classList.toggle('dark', dark);
+        if (sessionStorage.getItem('booted')) document.documentElement.classList.add('is-booted');
+      } catch (e) { }
+    })();
+  </script>
+  <style>
+    @font-face {
+      font-family: 'Pretendard';
+      src: url('assets/font/PretendardVariable.woff2') format('woff2-variations');
+      font-weight: 45 920;
+      font-display: swap;
+    }
+
+    :root {
+      --bg: #ececec;
+      --fg: #000000;
+      --grey: rgba(0, 0, 0, .45);
+      --faint: rgba(0, 0, 0, .3);
+      --line: rgba(0, 0, 0, .06);
+      --head-bg: #000;
+      --head-fg: #fff;
+      --body-bg: rgba(255, 255, 255, .45);
+      --tile: rgba(0, 0, 0, .05);
+      --accent: #4d00e6;
+      --x: 20px;
+      --gap: 20px;
+      --head: 40px;
+      --col: calc((100vw - var(--x) * 2 - var(--gap) * 11) / 12);
+      --ease: cubic-bezier(.65, 0, .35, 1);
+      --ease-out: cubic-bezier(.16, 1, .3, 1);
+      color-scheme: light;
+    }
+
+    :root.dark {
+      --bg: #212121;
+      --fg: #ffffff;
+      --grey: rgba(255, 255, 255, .45);
+      --faint: rgba(255, 255, 255, .3);
+      --line: rgba(255, 255, 255, .06);
+      --head-bg: #fff;
+      --head-fg: #000;
+      --body-bg: rgba(40, 40, 40, .5);
+      --tile: rgba(255, 255, 255, .06);
+      --accent: #a172ff;
+      color-scheme: dark;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Geist', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      line-height: 1.3;
+      text-transform: uppercase;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      transition: background-color .5s var(--ease), color .5s var(--ease);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    button {
+      font: inherit;
+      color: inherit;
+      text-transform: inherit;
+      background: none;
+      border: 0;
+      cursor: pointer;
+      text-align: inherit;
+    }
+
+    ul,
+    ol {
+      list-style: none;
+    }
+
+    ::selection {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    :focus-visible {
+      outline: 1px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+
+    /* ---------- 배경 레이어 ---------- */
+    .se-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .se-canvas canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .no-gl .se-canvas {
+      background: radial-gradient(40% 40% at 50% 50%, color-mix(in srgb, var(--accent) 40%, transparent), transparent 70%);
+    }
+
+    /* 은은한 바둑판 + [G]로 켜는 12칸 컬럼 */
+    .se-grid {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 19.6px 19.6px;
+    }
+
+    .se-grid .col-area {
+      position: absolute;
+      inset: 0 var(--x);
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: var(--gap);
+      opacity: 0;
+      transition: opacity .4s;
+    }
+
+    .se-grid .col-area i {
+      border-inline: 1px solid color-mix(in srgb, var(--fg) 12%, transparent);
+      background: color-mix(in srgb, var(--fg) 3%, transparent);
+    }
+
+    .show-grid .se-grid .col-area {
+      opacity: 1;
+    }
+
+    .se-title {
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      font-family: 'UnifrakturMaguntia', serif;
+      font-size: clamp(80px, 17vw, 300px);
+      line-height: .78;
+      text-transform: none;
+      letter-spacing: -.01em;
+      color: var(--fg);
+      white-space: nowrap;
+    }
+
+    .se-title span:first-child {
+      transform: translateX(-12%);
+    }
+
+    .se-title span:last-child {
+      transform: translateX(6%);
+    }
+
+    /* ---------- 공통 버튼 · 칩 ---------- */
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      height: var(--head);
+      padding: 0 8px;
+      border-radius: 3px;
+      background: var(--body-bg);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      color: var(--grey);
+      white-space: nowrap;
+    }
+
+    .chip.is-solid {
+      background: var(--head-bg);
+      color: var(--head-fg);
+    }
+
+    .chip .chip-icon {
+      display: grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      margin: 0 -2px 0 12px;
+      border-radius: 2px;
+      background: var(--head-bg);
+      color: var(--head-fg);
+      transition: background-color .3s;
+    }
+
+    .chip:hover .chip-icon {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .chip.is-light .chip-icon {
+      background: var(--tile);
+      color: var(--fg);
+    }
+
+    a.chip,
+    button.chip {
+      color: var(--fg);
+    }
+
+    /* ---------- 상단 바 ---------- */
+    .se-top {
+      position: fixed;
+      top: 20px;
+      left: var(--x);
+      right: var(--x);
+      z-index: 40;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .se-top>* {
+      pointer-events: auto;
+    }
+
+    .top-left {
+      display: flex;
+      gap: 8px;
+    }
+
+    .tool-area {
+      display: flex;
+      gap: 4px;
+      padding: 4px;
+      border-radius: 3px;
+      background: var(--head-bg);
+    }
+
+    .btn-tool {
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 2px;
+      background: color-mix(in srgb, var(--head-fg) 14%, transparent);
+      color: var(--head-fg);
+      transition: background-color .3s;
+    }
+
+    .btn-tool:hover,
+    .btn-tool[aria-pressed="true"] {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-tool svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .btn-tool .icon-sun,
+    .dark .btn-tool .icon-moon {
+      display: none;
+    }
+
+    .dark .btn-tool .icon-sun {
+      display: block;
+    }
+
+    /* ---------- 패널 ---------- */
+    .se-desk {
+      position: relative;
+      z-index: 10;
+    }
+
+    .panel {
+      --dx: 0px;
+      --dy: 0px;
+      position: absolute;
+      left: calc(var(--x) + (var(--c) - 1) * (var(--col) + var(--gap)));
+      top: var(--t);
+      width: calc(var(--w) * var(--col) + (var(--w) - 1) * var(--gap));
+      translate: var(--dx) var(--dy);
+      display: flex;
+      flex-direction: column;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .panel.is-front {
+      z-index: 5;
+    }
+
+    .panel.is-dragging {
+      z-index: 6;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .18);
+    }
+
+    .panel-head {
+      flex: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      height: var(--head);
+      padding: 4px;
+      background: var(--head-bg);
+      color: var(--head-fg);
+      transition: background-color .5s, color .5s;
+    }
+
+    .panel-head h2 {
+      flex: 1;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .panel-handle,
+    .panel-toggle {
+      flex: none;
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 2px;
+      background: color-mix(in srgb, var(--head-fg) 14%, transparent);
+      color: var(--head-fg);
+    }
+
+    .panel-handle {
+      cursor: grab;
+      touch-action: none;
+    }
+
+    .is-dragging .panel-handle {
+      cursor: grabbing;
+    }
+
+    .panel-toggle {
+      transition: background-color .3s;
+    }
+
+    .panel-toggle:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .panel-toggle i {
+      position: relative;
+      width: 10px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    .panel-toggle i::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: currentColor;
+      transform: rotate(90deg);
+      transition: transform .4s var(--ease);
+    }
+
+    .panel.is-open .panel-toggle i::after {
+      transform: rotate(0deg);
+    }
+
+    .panel-body {
+      position: relative;
+      background: var(--body-bg);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      transition: background-color .5s;
+    }
+
+    /* 접히는 본문: grid-rows 0fr ↔ 1fr */
+    .panel-fold {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows .6s var(--ease);
+    }
+
+    .panel.is-open .panel-fold {
+      grid-template-rows: 1fr;
+    }
+
+    .panel-fold>.panel-body {
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    /* 선택 전 비활성 패널: 빗금 헤더 */
+    .panel.is-empty .panel-head {
+      background: repeating-linear-gradient(-45deg, color-mix(in srgb, var(--head-bg) 45%, transparent) 0 1px, color-mix(in srgb, var(--head-bg) 20%, transparent) 1px 5px);
+      color: var(--head-fg);
+    }
+
+    .panel.is-empty .panel-handle {
+      background: transparent;
+    }
+
+    .panel.is-empty .panel-toggle {
+      visibility: hidden;
+    }
+
+    /* WORK/LIST */
+    .work-list {
+      padding: 8px 8px 12px;
+    }
+
+    .btn-work {
+      position: relative;
+      display: grid;
+      grid-template-columns: 50px 1fr;
+      width: 100%;
+      padding: 1px 0;
+      color: var(--grey);
+      transition: color .25s;
+    }
+
+    .work-list:hover .btn-work,
+    .has-selected .btn-work {
+      color: var(--faint);
+    }
+
+    .work-list .btn-work:hover,
+    .btn-work.is-on {
+      color: var(--fg);
+    }
+
+    .btn-work .work-name {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .btn-work .work-name svg {
+      width: 11px;
+      height: 11px;
+    }
+
+    .btn-work.is-on .work-no::before {
+      content: '[ ';
+    }
+
+    .btn-work.is-on .work-no::after {
+      content: ' ]';
+    }
+
+    .btn-work.is-on .work-no {
+      margin-left: -5px;
+    }
+
+    /* WORK/GRID: 띠 형태 썸네일, 호버 · 선택 시 펼침 */
+    .strip-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 8px;
+      height: 100%;
+      overflow: auto;
+      scrollbar-width: none;
+    }
+
+    .btn-strip {
+      flex: none;
+      height: 28px;
+      overflow: hidden;
+      border-radius: 1px;
+      transition: height .6s var(--ease);
+    }
+
+    .btn-strip img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      transition: transform .8s var(--ease-out), filter .4s;
+      filter: grayscale(.4);
+    }
+
+    .btn-strip:hover,
+    .btn-strip.is-on {
+      height: 200px;
+    }
+
+    .btn-strip:hover img,
+    .btn-strip.is-on img {
+      filter: none;
+    }
+
+    /* WORK/DETAILS */
+    .detail-box {
+      padding: 14px 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .detail-meta {
+      display: flex;
+      justify-content: space-between;
+      color: var(--grey);
+    }
+
+    .detail-title {
+      font-family: 'Pretendard', 'Geist', sans-serif;
+      font-size: 26px;
+      line-height: 1.05;
+      font-weight: 600;
+      letter-spacing: -.035em;
+      text-transform: none;
+    }
+
+    .detail-desc {
+      font-family: 'Pretendard', sans-serif;
+      text-transform: none;
+      font-size: 13px;
+      line-height: 1.55;
+      color: color-mix(in srgb, var(--fg) 75%, transparent);
+    }
+
+    .detail-dl {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      row-gap: 2px;
+      border-top: 1px solid color-mix(in srgb, var(--fg) 12%, transparent);
+      padding-top: 10px;
+    }
+
+    .detail-dl dt {
+      color: var(--grey);
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .tag-list span {
+      padding: 3px 6px;
+      border-radius: 2px;
+      background: var(--tile);
+      font-size: 11px;
+    }
+
+    .detail-box .chip {
+      align-self: flex-start;
+      background: var(--tile);
+    }
+
+    /* WORK/IMAGES */
+    .image-list {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 6px;
+      padding: 8px;
+    }
+
+    .image-list a {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      border-radius: 1px;
+      background: var(--tile);
+    }
+
+    .image-list a:first-child {
+      grid-row: span 2;
+      aspect-ratio: auto;
+      min-height: 100%;
+    }
+
+    .image-list a:only-child {
+      grid-column: 1 / -1;
+      grid-row: auto;
+      aspect-ratio: 16 / 9;
+    }
+
+    .image-list img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      transition: transform .8s var(--ease-out);
+    }
+
+    .image-list a:hover img {
+      transform: scale(1.05);
+    }
+
+    /* ABOUT */
+    .about-box {
+      padding: 14px 20px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      color: color-mix(in srgb, var(--fg) 70%, transparent);
+      line-height: 1.35;
+    }
+
+    .about-box .teaser {
+      color: var(--grey);
+    }
+
+    .about-box p a {
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .career-list li {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0 10px;
+      padding: 8px 0;
+      border-top: 1px solid color-mix(in srgb, var(--fg) 10%, transparent);
+    }
+
+    .career-list b {
+      font-weight: 500;
+      color: var(--fg);
+    }
+
+    .career-list small {
+      grid-column: 1 / -1;
+      font-size: 11px;
+      color: var(--grey);
+    }
+
+    /* NOW */
+    .now-box {
+      height: 100%;
+      min-height: 230px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 12px;
+    }
+
+    .now-time {
+      font-size: clamp(40px, 4.4vw, 64px);
+      line-height: .9;
+      font-weight: 500;
+      letter-spacing: -.05em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .now-time small {
+      font-size: .4em;
+      letter-spacing: 0;
+      color: var(--grey);
+      vertical-align: top;
+    }
+
+    .now-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .now-status i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #2bd46b;
+      box-shadow: 0 0 0 0 rgba(43, 212, 107, .6);
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      70% {
+        box-shadow: 0 0 0 7px rgba(43, 212, 107, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(43, 212, 107, 0);
+      }
+    }
+
+    /* STACK */
+    .stack-list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      padding: 8px;
+      -webkit-mask-image: linear-gradient(#000 60%, transparent);
+      mask-image: linear-gradient(#000 60%, transparent);
+    }
+
+    .stack-list li {
+      display: grid;
+      place-items: center;
+      height: 58px;
+      padding: 4px;
+      border-radius: 2px;
+      background: var(--tile);
+      color: var(--grey);
+      font-size: 11px;
+      text-align: center;
+      transition: background-color .3s, color .3s;
+    }
+
+    .stack-list li:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    /* STATS 카드 */
+    .stats-head {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 8px 6px;
+    }
+
+    .stats-card {
+      margin: 0 8px 8px;
+      padding: 14px;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 1px;
+      text-transform: none;
+      transition: background-color .5s;
+    }
+
+    .stats-card .logo {
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .stats-card .big {
+      font-size: clamp(22px, 2vw, 30px);
+      line-height: 1.05;
+      font-weight: 500;
+      letter-spacing: -.03em;
+    }
+
+    .stats-card .big b {
+      display: block;
+      font-size: 1.6em;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stats-card small {
+      font-size: 10px;
+      line-height: 1.4;
+      opacity: .85;
+    }
+
+    /* ---------- 회색 정보 블록 ---------- */
+    .info {
+      position: absolute;
+      z-index: 0;
+      display: grid;
+      grid-template-columns: var(--col) 1fr;
+      gap: var(--gap);
+      left: calc(var(--x) + (var(--c) - 1) * (var(--col) + var(--gap)));
+      width: calc(var(--w) * var(--col) + (var(--w) - 1) * var(--gap));
+      font-size: 10px;
+      line-height: 1.25;
+      color: var(--faint);
+      pointer-events: none;
+    }
+
+    .info dl {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      column-gap: 10px;
+    }
+
+    .info dd {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ---------- 하단 ---------- */
+    .se-bottom {
+      position: fixed;
+      left: var(--x);
+      right: var(--x);
+      bottom: 20px;
+      z-index: 30;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .se-bottom>* {
+      pointer-events: auto;
+    }
+
+    .link-area {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .credit {
+      color: var(--grey);
+    }
+
+    .credit a {
+      color: var(--fg);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* ---------- 커서 ---------- */
+    .se-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 200;
+      pointer-events: none;
+    }
+
+    .cursor-dot {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      margin: -5px 0 0 -5px;
+      border: 1px solid var(--accent);
+    }
+
+    .cursor-dot span {
+      position: absolute;
+      top: 100%;
+      left: 100%;
+      margin-left: 2px;
+      font-size: 10px;
+      line-height: 1.1;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .cursor-frame {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 199;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .25s;
+    }
+
+    .cursor-frame.is-on {
+      opacity: 1;
+    }
+
+    .cursor-frame i {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-color: var(--accent);
+      border-style: solid;
+      border-width: 0;
+    }
+
+    .cursor-frame i:nth-child(1) {
+      top: -4px;
+      left: -4px;
+      border-top-width: 1px;
+      border-left-width: 1px;
+    }
+
+    .cursor-frame i:nth-child(2) {
+      top: -4px;
+      right: -4px;
+      border-top-width: 1px;
+      border-right-width: 1px;
+    }
+
+    .cursor-frame i:nth-child(3) {
+      bottom: -4px;
+      left: -4px;
+      border-bottom-width: 1px;
+      border-left-width: 1px;
+    }
+
+    .cursor-frame i:nth-child(4) {
+      bottom: -4px;
+      right: -4px;
+      border-bottom-width: 1px;
+      border-right-width: 1px;
+    }
+
+    .se-cursor,
+    .cursor-frame {
+      display: none;
+    }
+
+    @media (pointer: fine) {
+
+      .se-cursor,
+      .cursor-frame {
+        display: block;
+      }
+    }
+
+    /* ---------- BIOS 부팅 ---------- */
+    .se-boot {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      padding: 20px var(--x);
+      background: #dddddd;
+      color: rgba(0, 0, 0, .5);
+      font-size: 13px;
+      line-height: 1.4;
+      cursor: pointer;
+    }
+
+    .dark .se-boot {
+      background: #1a1a1a;
+      color: rgba(255, 255, 255, .5);
+    }
+
+    .se-boot p {
+      min-height: 1.4em;
+      white-space: pre;
+    }
+
+    .se-boot .key {
+      padding: 0 2px;
+      background: #000;
+      color: #fff;
+    }
+
+    .dark .se-boot .key {
+      background: #fff;
+      color: #000;
+    }
+
+    .se-boot .caret {
+      display: inline-block;
+      width: .55ch;
+      height: 1em;
+      margin-left: 1px;
+      vertical-align: -2px;
+      background: currentColor;
+      animation: blink 1s steps(1) infinite;
+    }
+
+    .se-boot .ok {
+      color: var(--accent);
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    .is-booted .se-boot {
+      display: none;
+    }
+
+    /* 부팅 후 등장 */
+    .se-top,
+    .se-bottom,
+    .panel,
+    .info,
+    .se-title {
+      transition: opacity .6s, transform .9s var(--ease-out);
+    }
+
+    html:not(.is-booted) .se-top {
+      transform: translateY(-80px);
+    }
+
+    html:not(.is-booted) .se-bottom {
+      transform: translateY(80px);
+    }
+
+    html:not(.is-booted) .panel,
+    html:not(.is-booted) .info,
+    html:not(.is-booted) .se-title {
+      opacity: 0;
+      transform: scale(.96);
+    }
+
+    .panel {
+      transition-delay: var(--delay, 0s);
+    }
+
+    /* ---------- 데스크톱 배치 (가로 · 세로 충분할 때) ---------- */
+    @media (min-width: 1100px) and (min-height: 700px) {
+      body {
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .se-desk {
+        position: fixed;
+        inset: 0;
+      }
+
+      .p-list {
+        --c: 1;
+        --w: 3;
+        --t: 80px;
+      }
+
+      .p-grid {
+        --c: 1;
+        --w: 3;
+        --t: 360px;
+        bottom: 80px;
+      }
+
+      .p-grid .panel-body {
+        flex: 1;
+        min-height: 0;
+      }
+
+      .col-mid {
+        position: absolute;
+        top: 80px;
+        bottom: 80px;
+        left: calc(var(--x) + 3 * (var(--col) + var(--gap)));
+        width: calc(3 * var(--col) + 2 * var(--gap));
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        pointer-events: none;
+      }
+
+      .col-mid>* {
+        pointer-events: auto;
+      }
+
+      .col-mid .panel {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: auto;
+      }
+
+      .col-mid .info {
+        position: relative;
+        left: auto;
+        width: auto;
+        grid-template-columns: var(--col) 1fr;
+        pointer-events: none;
+      }
+
+      .col-mid>* {
+        flex: none;
+      }
+
+      .col-mid .info-session {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+
+      .col-mid .info-network {
+        transition: opacity .4s;
+      }
+
+      .col-mid.has-work .info-network {
+        opacity: 0;
+      }
+
+      .p-now {
+        --c: 8;
+        --w: 2;
+        --t: 80px;
+      }
+
+      .p-about {
+        --c: 10;
+        --w: 3;
+        --t: 80px;
+      }
+
+      .p-stats {
+        --c: 11;
+        --w: 2;
+        --t: 260px;
+      }
+
+      .p-stack {
+        --c: 8;
+        --w: 3;
+        --t: 380px;
+      }
+
+      .info-system {
+        --c: 7;
+        --w: 3;
+        bottom: 135px;
+      }
+
+      .info-keys {
+        --c: 10;
+        --w: 3;
+        bottom: 85px;
+      }
+
+      .panel-fold>.panel-body {
+        max-height: calc(100vh - 220px);
+        overflow: auto;
+        scrollbar-width: thin;
+      }
+    }
+
+    /* ---------- 모바일 · 작은 화면: 세로로 쌓기 ---------- */
+    @media (max-width: 1099px), (max-height: 699px) {
+      .se-top {
+        position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 16px var(--x) 0;
+      }
+
+      .top-left .chip:not(.is-solid) {
+        display: none;
+      }
+
+      .se-title {
+        position: relative;
+        inset: auto;
+        height: 62svh;
+        min-height: 360px;
+        margin-top: -56px;
+        font-size: clamp(64px, 21vw, 220px);
+      }
+
+      .se-desk {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 0 var(--x) 20px;
+      }
+
+      .panel,
+      .info {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: auto;
+        translate: none;
+      }
+
+      .col-mid {
+        display: contents;
+      }
+
+      .panel-handle {
+        visibility: hidden;
+      }
+
+      .p-list {
+        order: 1;
+      }
+
+      .p-detail {
+        order: 2;
+      }
+
+      .p-images {
+        order: 3;
+      }
+
+      .p-grid {
+        order: 4;
+      }
+
+      .p-grid .strip-list {
+        max-height: 520px;
+      }
+
+      .p-about {
+        order: 5;
+      }
+
+      .info-session {
+        order: 6;
+      }
+
+      .p-stack {
+        order: 7;
+      }
+
+      .info-network {
+        order: 8;
+      }
+
+      .p-now {
+        order: 9;
+      }
+
+      .info-system {
+        order: 10;
+      }
+
+      .p-stats {
+        order: 11;
+      }
+
+      .info-keys {
+        display: none;
+      }
+
+      .p-detail.is-empty,
+      .p-images.is-empty {
+        display: none;
+      }
+
+      .se-bottom {
+        position: relative;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 var(--x) 24px;
+      }
+
+      .info {
+        grid-template-columns: 70px 1fr;
+      }
+    }
+
+    /* 세로가 낮은 데스크톱: 패널과 겹치는 정보 블록 숨김 */
+    @media (min-width: 1100px) and (min-height: 700px) and (max-height: 819px) {
+
+      .info-system,
+      .info-keys {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      :root {
+        --x: 16px;
+      }
+
+      .stack-list {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: .01ms !important;
+        transition-delay: 0s !important;
+        animation: none !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
-
-  <div class="se-loader" aria-hidden="true">
-    <div class="group-loader">
-    <p class="loader-word" data-profile="loader">Portfolio</p>
-    <p class="loader-count">0</p>
-    <i class="loader-bar"></i>
-    </div>
+  <!-- BIOS 부팅 화면 -->
+  <div class="se-boot" role="dialog" aria-label="부팅 화면. Enter를 누르거나 클릭하면 넘어갑니다.">
+    <div class="boot-lines" aria-hidden="true"></div>
   </div>
-  <div class="se-wipe" aria-hidden="true"></div>
-  <div class="se-cursor" aria-hidden="true"><span class="cursor-label">VIEW</span></div>
 
-  <header class="se-header">
-    <div class="header-bg"></div>
-    <div class="group-header">
-      <a class="link-logo" href="#top" data-profile="logo">Portfolio</a>
-      <nav class="menu-area" aria-label="주요 메뉴">
-        <a class="link-menu" href="#work">Work</a>
-        <a class="link-menu" href="#more">More</a>
-        <a class="link-menu" href="#about">About</a>
-        <a class="link-menu" href="#stack">Stack</a>
-        <a class="link-menu" href="#ai">AI</a>
-        <a class="link-menu is-cta" href="#contact">Contact</a>
-      </nav>
+  <div class="se-canvas" aria-hidden="true"><canvas id="gl"></canvas></div>
+  <div class="se-grid" aria-hidden="true">
+    <div class="col-area"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  </div>
+
+  <header class="se-top">
+    <div class="top-left">
+      <a class="chip is-solid" href="./" data-scramble>Hong Kyungeun</a>
+      <span class="chip" data-scramble>Web Publisher</span>
+      <button class="chip js-open-about" type="button"><span data-scramble>Seoul / Korea</span><span class="chip-icon" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M5 0v10M0 5h10" stroke="currentColor" /></svg></span></button>
+    </div>
+    <div class="tool-area" role="toolbar" aria-label="화면 도구">
+      <button class="btn-tool js-grid" type="button" aria-pressed="false" aria-label="그리드 보기 (G)" title="그리드 보기 [G]">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><rect x="1.5" y="1.5" width="13" height="13" rx="1" /><path d="M6 1.5v13M10 1.5v13" /></svg>
+      </button>
+      <button class="btn-tool js-reset" type="button" aria-label="레이아웃 초기화 (L)" title="레이아웃 초기화 [L]">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><rect x="1.5" y="1.5" width="5" height="13" rx="1" /><rect x="9.5" y="1.5" width="5" height="5" rx="1" /><rect x="9.5" y="9.5" width="5" height="5" rx="1" /></svg>
+      </button>
+      <button class="btn-tool js-theme" type="button" aria-label="다크 모드 전환 (D)" title="다크 / 라이트 [D]">
+        <svg class="icon-moon" viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M13.5 9.5A6 6 0 1 1 6.5 2.5a4.7 4.7 0 0 0 7 7Z" /></svg>
+        <svg class="icon-sun" viewBox="0 0 16 16" fill="none" stroke="currentColor"><circle cx="8" cy="8" r="3" /><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3 3l1.4 1.4M11.6 11.6 13 13M3 13l1.4-1.4M11.6 4.4 13 3" /></svg>
+      </button>
     </div>
   </header>
 
-  <div id="smooth-wrapper">
-  <div id="smooth-content">
+  <h1 class="se-title"><span>Web</span><span>Publisher</span></h1>
 
-  <main id="top">
-
-    <section class="se-hero">
-      <div class="group-thumb" aria-hidden="true">
-        <div class="thumb-box" data-depth="1.2"><img src="projects/ebs/img/portfolio/question-match.jpg" alt=""></div>
-        <div class="thumb-box" data-depth="2"><img src="projects/yeamoonsa/img/portfolio/game-wordhunt.jpg" alt=""></div>
-        <div class="thumb-box" data-depth=".8"><img src="projects/lms/screenshots/dashboard.png" alt=""></div>
-        <div class="thumb-box" data-depth="1.6"><img src="projects/siwon/img/portfolio/test_report.jpg" alt=""></div>
+  <main class="se-desk">
+    <section id="work" class="panel p-list is-open" data-panel="list" style="--delay:.05s">
+      <div class="panel-head">
+        <span class="panel-handle" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="2" cy="2" r="1" /><circle cx="6" cy="2" r="1" /><circle cx="10" cy="2" r="1" /><circle cx="2" cy="6" r="1" /><circle cx="6" cy="6" r="1" /><circle cx="10" cy="6" r="1" /><circle cx="2" cy="10" r="1" /><circle cx="6" cy="10" r="1" /><circle cx="10" cy="10" r="1" /></svg></span>
+        <h2>[Work/List]</h2>
+        <span class="panel-handle" style="visibility:hidden" aria-hidden="true"></span>
       </div>
-      <div class="group-hero">
-        <div class="hero-area">
-        <p class="hero-kicker"><i></i><span data-profile="role">Web Publisher</span> Portfolio</p>
-        <h1 class="hero-title" aria-label="디자인을 정확한 화면으로 옮기는 퍼블리셔">
-          <span class="line-box"><span class="hero-line">디자인을</span></span>
-          <span class="line-box"><span class="hero-line">정확한 화면으로</span></span>
-          <span class="line-box"><span class="hero-line">옮기는 <em>퍼블리셔</em></span></span>
-        </h1>
-        <p class="hero-sub">웹 퍼블리싱 <b>4년 10개월</b>. 교육 서비스 <b>10여 개</b>, 에이전시 기업 사이트 <b>10여 개</b>, React 웹앱까지. 학생이 문제를 푸는 화면부터 관리자가 통계를 보는 화면까지 만들었습니다.</p>
-        </div>
+      <div class="panel-body">
+        <ol class="work-list"></ol>
       </div>
-      <p class="scroll-area"><span></span>Scroll</p>
     </section>
 
-    <div class="se-marquee" aria-hidden="true">
-      <div class="group-marquee">
-        <div class="marquee-area">
-          <span>HTML5</span><i></i><span>CSS3</span><i></i><span>SCSS</span><i></i><span>JavaScript</span><i></i><span>jQuery</span><i></i><span>Thymeleaf</span><i></i><span>Swiper</span><i></i><span>Lottie</span><i></i><span>Chart.js</span><i></i><span>KaTeX</span><i></i><span>GSAP</span><i></i><span>React</span><i></i><span>TypeScript</span><i></i><span>Claude Code</span><i></i><span>Figma MCP</span><i></i>
+    <section class="panel p-grid is-open" data-panel="grid" style="--delay:.12s">
+      <div class="panel-head">
+        <span class="panel-handle" aria-hidden="true"></span>
+        <h2>[Work/Grid]</h2>
+        <span class="panel-handle" style="visibility:hidden" aria-hidden="true"></span>
+      </div>
+      <div class="panel-body">
+        <div class="strip-list"></div>
+      </div>
+    </section>
+
+    <div class="col-mid">
+      <section class="panel p-detail is-empty" data-panel="detail" style="--delay:.18s">
+        <div class="panel-head">
+          <span class="panel-handle" aria-hidden="true"></span>
+          <h2>[Work/Details]</h2>
+          <button class="panel-toggle js-close-work" type="button" aria-label="작업 닫기"><i></i></button>
         </div>
+        <div class="panel-fold">
+          <div class="panel-body">
+            <div class="detail-box" aria-live="polite"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel p-images is-empty" data-panel="images" style="--delay:.22s">
+        <div class="panel-head">
+          <span class="panel-handle" aria-hidden="true"></span>
+          <h2>[Work/Images]</h2>
+          <button class="panel-toggle js-close-work" type="button" aria-label="작업 닫기"><i></i></button>
+        </div>
+        <div class="panel-fold">
+          <div class="panel-body">
+            <div class="image-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="info info-network" aria-hidden="true">
+        <p>Network</p>
+        <dl>
+          <dt>Type :</dt><dd data-stat="net">Online</dd>
+          <dt>Ping :</dt><dd data-stat="ping">— ms</dd>
+          <dt>HTTP :</dt><dd data-stat="http">https</dd>
+        </dl>
+      </div>
+
+      <div class="info info-session" aria-hidden="true">
+        <p>Session</p>
+        <dl>
+          <dt>Current time :</dt><dd data-stat="time">00:00:00</dd>
+          <dt>Session duration :</dt><dd data-stat="dur">00:00:00</dd>
+          <dt>Mouse speed :</dt><dd data-stat="speed">0 px/s</dd>
+          <dt>Average fps :</dt><dd data-stat="fps">60</dd>
+          <dt>Distance moved :</dt><dd data-stat="dist">0 px</dd>
+          <dt>Clicks :</dt><dd data-stat="clicks">0</dd>
+          <dt>Hover count :</dt><dd data-stat="hovers">0</dd>
+          <dt>Keys pressed :</dt><dd data-stat="keys">0</dd>
+        </dl>
       </div>
     </div>
 
-    <section class="se-about" id="about">
-      <div class="group-about">
-        <p class="eyebrow">About</p>
-        <p class="about-text" data-profile="intro">다른 환경에서도 빠르게 맞추고, 시안을 어떤 화면에서도 흐트러지지 않게 옮깁니다.</p>
-        <div class="stat-area">
-          <div class="stat-box"><b><span class="stat-num" data-to="4">4</span><sup>년+</sup></b><span class="stat-label">웹 퍼블리싱 경력</span></div>
-          <div class="stat-box"><b><span class="stat-num" data-to="125">125</span><sup>+</sup></b><span class="stat-label">퍼블리싱한 화면</span></div>
-          <div class="stat-box"><b><span class="stat-num" data-to="10">10</span><sup>+</sup></b><span class="stat-label">교육 서비스 프로젝트</span></div>
-          <div class="stat-box"><b><span class="stat-num" data-to="10">10</span><sup>+</sup></b><span class="stat-label">에이전시 기업 사이트</span></div>
-        </div>
-        <div class="career-area">
-          <h3 class="career-head">Experience</h3>
-          <ol class="career-list">
-            <li class="career-box">
-              <p class="career-date">2025.08 — 2026.10</p>
-              <div class="career-info">
-                <p class="career-name">에듀템 <small>개발팀 · 웹 퍼블리셔</small></p>
-                <p class="career-desc">시원스쿨 웹앱, EBS · 예문사 어린이 · 초등 게임형 학습 콘텐츠, 자사 교육 서비스 리뉴얼과 유지보수. Java 기반 환경에서 Vanilla JS로 인터랙션을 구현했습니다.</p>
-              </div>
-            </li>
-            <li class="career-box">
-              <p class="career-date">2024.02 — 2025.08</p>
-              <div class="career-info">
-                <p class="career-name">블루잇 <small>웹에이전시 · 웹 퍼블리셔</small></p>
-                <p class="career-desc">일동생활건강, 안동컨벤션뷰로, WTC 등 고객사 사이트 제작. 그누보드 기반 PHP와 jQuery · GSAP 인터랙션, Vue 프로젝트 유지보수를 맡았습니다.</p>
-              </div>
-            </li>
-            <li class="career-box">
-              <p class="career-date">2020.11 — 2022.10</p>
-              <div class="career-info">
-                <p class="career-name">제이위드 <small>웹 퍼블리셔</small></p>
-                <p class="career-desc">자사 쇼핑몰 관리와 퍼블리싱, 상품 상세 페이지 제작. 운영 업무를 함께 하며 관리 업무까지 담당했습니다.</p>
-              </div>
-            </li>
-          </ol>
+    <section class="panel p-now is-open" data-panel="now" style="--delay:.26s">
+      <div class="panel-head">
+        <span class="panel-handle" aria-hidden="true"></span>
+        <h2>[Now]</h2>
+        <span class="panel-handle" style="visibility:hidden" aria-hidden="true"></span>
+      </div>
+      <div class="panel-body">
+        <div class="now-box">
+          <p class="now-status"><i></i>Available for work</p>
+          <p class="now-time"><span class="js-now-hm">00:00</span><small class="js-now-s">00</small></p>
+          <p class="muted" style="color:var(--grey)">Seoul, KR<br>UTC +9</p>
         </div>
       </div>
     </section>
 
-    <section class="se-work" id="work">
-      <div class="group-work-head">
-        <div>
-          <p class="eyebrow" style="color:inherit;opacity:.55">Selected Work</p>
-          <h2>Projects</h2>
-        </div>
-        <p>학생용 학습 화면, 모바일 웹앱, 관리자 시스템, React 웹앱까지. 교육 프로젝트를 누르면 화면 구성과 구현 포인트를 자세히 볼 수 있습니다.</p>
+    <section class="panel p-about" data-panel="about" style="--delay:.3s">
+      <div class="panel-head">
+        <span class="panel-handle" aria-hidden="true"></span>
+        <h2>[About]</h2>
+        <button class="panel-toggle js-about-toggle" type="button" aria-expanded="false" aria-controls="about-body" aria-label="소개 열기"><i></i></button>
       </div>
-
-      <div class="group-work">
-        <div class="project-area">
-
-          <a class="link-project" href="projects/ebs/index.html" data-theme style="--pbg:#06204a;--pfg:#ffffff;--pac:#35f3ff" data-bg="#06204a" data-fg="#ffffff" data-ac="#35f3ff" data-cursor="VIEW">
-            <div class="info-box">
-              <p class="project-no">01 / EBS</p>
-              <h3 class="project-title">EBS 수학진단도구<br>학생 화면</h3>
-              <p class="project-desc">우주 탐사 콘셉트로 중학생의 수학 결손 개념을 진단하는 서비스. 11가지 문항 유형과 개념 지도 리포트까지 학생이 만나는 전 화면을 만들었습니다.</p>
-              <dl class="project-meta"><dt>역할</dt><dd>학생 화면 전체 퍼블리싱</dd><dt>화면</dt><dd>25개</dd></dl>
-              <div class="tag-list"><span>SCSS</span><span>KaTeX</span><span>Lottie</span><span>드래그 앤 드롭</span><span>Canvas</span></div>
-              <span class="project-more"><i>→</i>프로젝트 보기</span>
+      <div class="panel-body">
+        <div class="about-box">
+          <p class="teaser" data-teaser aria-hidden="true">Web publisher since 2020</p>
+          <div class="panel-fold" id="about-body">
+            <div style="min-height:0;overflow:hidden">
+              <div class="about-box" style="padding:0;gap:14px">
+                <p data-decode>디자인을 정확한 화면으로 옮기는 웹 퍼블리셔. 4년 10개월 동안 교육 서비스 10여 개, 기업 사이트 10여 개, React 웹앱을 만들었습니다.</p>
+                <p data-decode>학생이 문제를 푸는 화면부터 관리자가 통계를 보는 화면까지. 다른 환경에서도 빠르게 맞추고, 시안을 어떤 화면에서도 흐트러지지 않게 옮깁니다.</p>
+                <p data-decode>반복 작업과 검증은 AI에게 맡기고, 구조 설계와 최종 판단은 직접 합니다.</p>
+                <ol class="career-list">
+                  <li><b>Edutem</b><span>2025.08 — 2026.10</span><small>개발팀 · 웹 퍼블리셔 — 시원스쿨 웹앱, EBS · 예문사 학습 콘텐츠</small></li>
+                  <li><b>Blueit</b><span>2024.02 — 2025.08</span><small>웹에이전시 · 일동생활건강, 안동컨벤션뷰로, WTC</small></li>
+                  <li><b>Jwith</b><span>2020.11 — 2022.10</span><small>자사 쇼핑몰 퍼블리싱 · 상세 페이지</small></li>
+                </ol>
+              </div>
             </div>
-            <div class="media-box"><img src="projects/ebs/img/portfolio/home.jpg" alt="EBS 수학진단도구 홈 화면" loading="lazy"></div>
-          </a>
-
-          <a class="link-project" href="projects/siwon/index.html" data-theme style="--pbg:#e8eeff;--pfg:#17171b;--pac:#3d68ee" data-bg="#e8eeff" data-fg="#17171b" data-ac="#3d68ee" data-cursor="VIEW">
-            <div class="info-box">
-              <p class="project-no">02 / SIWONSCHOOL</p>
-              <h3 class="project-title">시원스쿨<br>AI 스피킹 챗봇</h3>
-              <p class="project-desc">설치 없이 브라우저에서 앱처럼 쓰는 모바일 웹앱. AI 캐릭터와 영어로 대화하고 발음 리포트를 받는 화면을 PC · 태블릿 · 모바일에 맞춰 만들었습니다.</p>
-              <dl class="project-meta"><dt>역할</dt><dd>전 화면 퍼블리싱 · 인터랙션</dd><dt>화면</dt><dd>28개</dd></dl>
-              <div class="tag-list"><span>모바일 웹앱</span><span>Thymeleaf</span><span>Swiper</span><span>dotLottie</span><span>100dvh</span></div>
-              <span class="project-more"><i>→</i>프로젝트 보기</span>
-            </div>
-            <div class="media-box"><span class="project-badge">Web App</span><img src="projects/siwon/img/portfolio/chatbot_intent.jpg" alt="시원스쿨 AI 스피킹 챗봇 트레이닝 화면" loading="lazy"></div>
-          </a>
-
-          <a class="link-project" href="projects/yeamoonsa/index.html" data-theme style="--pbg:#fff1cf;--pfg:#3a2208;--pac:#f86f00" data-bg="#fff1cf" data-fg="#3a2208" data-ac="#f86f00" data-cursor="VIEW">
-            <div class="info-box">
-              <p class="project-no">03 / BUILD UP LITERACY</p>
-              <h3 class="project-title">Build Up Literacy<br>학생 학습 화면</h3>
-              <p class="project-desc">초등학생이 영어 리터러시를 쌓는 학습 서비스. Step · Book 선택부터 주차별 학습, 게임 6종, 마이페이지까지 만들었습니다.</p>
-              <dl class="project-meta"><dt>역할</dt><dd>학생 화면 퍼블리싱</dd><dt>화면</dt><dd>23개</dd></dl>
-              <div class="tag-list"><span>게임 6종</span><span>Lottie</span><span>Swiper</span><span>상태별 마크업</span></div>
-              <span class="project-more"><i>→</i>프로젝트 보기</span>
-            </div>
-            <div class="media-box"><img src="projects/yeamoonsa/img/portfolio/content-weekly.jpg" alt="Build Up Literacy 주차별 학습 화면" loading="lazy"></div>
-          </a>
-
-          <a class="link-project" href="projects/lms/index.html" data-theme style="--pbg:#dff4ff;--pfg:#1e2124;--pac:#f86f00" data-bg="#dff4ff" data-fg="#1e2124" data-ac="#f86f00" data-cursor="VIEW">
-            <div class="info-box">
-              <p class="project-no">04 / BUILD UP LITERACY LMS</p>
-              <h3 class="project-title">BuildUp LITERACY<br>LMS 관리자</h3>
-              <p class="project-desc">본사 · 지사 · 원 · 교사가 쓰는 관리 시스템. 권한 4종에 맞춘 대시보드, 통계, 학습 결과 화면을 퍼블리싱하고 일부 화면은 UI 디자인까지 했습니다.</p>
-              <dl class="project-meta"><dt>역할</dt><dd>퍼블리싱 + 일부 화면 UI 디자인</dd><dt>화면</dt><dd>49개</dd></dl>
-              <div class="tag-list"><span>Chart.js</span><span>Quill</span><span>jQuery</span><span>권한별 화면</span></div>
-              <span class="project-more"><i>→</i>프로젝트 보기</span>
-            </div>
-            <div class="media-box"><img src="projects/lms/screenshots/dashboard.png" alt="LMS 통합 현황판 화면" loading="lazy"></div>
-          </a>
-
-          <a class="link-project" href="https://hamwoonsaju.com/" target="_blank" rel="noopener" data-theme style="--pbg:#ffe3f0;--pfg:#1e2939;--pac:#e8458f" data-bg="#ffe3f0" data-fg="#1e2939" data-ac="#e8458f" data-cursor="VISIT">
-            <div class="info-box">
-              <p class="project-no">05 / HAMWOONSAJU</p>
-              <h3 class="project-title">햄운사주<br>AI 사주 웹앱</h3>
-              <p class="project-desc">모바일 브라우저에 맞춘 AI 사주 서비스. Figma 시안을 React 컴포넌트로 옮겨 로그인 · 온보딩, 홈, 오늘의 운세, MY 화면을 구현했습니다.</p>
-              <dl class="project-meta"><dt>역할</dt><dd>UI 화면 구현 (2인 팀)</dd><dt>시기</dt><dd>2026</dd></dl>
-              <div class="tag-list"><span>React</span><span>TypeScript</span><span>Vite</span><span>CSS Modules</span><span>SCSS</span></div>
-              <span class="project-more"><i>→</i>사이트 보기</span>
-            </div>
-            <div class="media-box"><span class="project-badge">React</span><img src="assets/img/works/hamwoonsaju.jpg" alt="햄운사주 로그인 · 홈 · MY 화면" loading="lazy"></div>
-          </a>
-
-        </div>
-        <div class="progress-area" aria-hidden="true"><i></i></div>
-        <p class="count-area" aria-hidden="true"><span class="work-current">01</span> / 05</p>
-      </div>
-    </section>
-
-    <section class="se-archive" id="more">
-      <div class="group-archive">
-        <div class="archive-head">
-          <div>
-            <p class="eyebrow">More Works</p>
-            <h2 class="section-title">Other Works</h2>
           </div>
-          <p>기업 사이트 실무와 GSAP 인터랙션 개인 작업. 목록을 누르면 실제 사이트가 새 탭에서 열립니다.</p>
         </div>
-        <ul class="archive-area">
-            <li>
-              <a class="link-archive" href="https://adco.or.kr/" target="_blank" rel="noopener" data-cursor="VISIT" data-index="0">
-                <span class="archive-year">2025</span>
-                <span class="archive-title"><span class="archive-name">ADCO</span><small>안동국제컨벤션센터 공식 사이트</small></span>
-                <span class="archive-type">실무</span>
-                <span class="archive-tag"><em>PHP</em><em>GSAP</em><em>jQuery</em><em>Canvas</em><em>FullCalendar</em></span>
-                <span class="archive-arrow" aria-hidden="true">↗</span>
-                <span class="archive-thumb"><img src="assets/img/works/adco.jpg" alt="안동국제컨벤션센터 메인 화면" loading="lazy"></span>
-              </a>
-            </li>
-            <li>
-              <a class="link-archive" href="http://www.wtckorea.com/" target="_blank" rel="noopener" data-cursor="VISIT" data-index="1">
-                <span class="archive-year">2025</span>
-                <span class="archive-title"><span class="archive-name">WTC</span><small>플로어링 브랜드 기업 사이트</small></span>
-                <span class="archive-type">실무</span>
-                <span class="archive-tag"><em>PHP</em><em>GSAP</em><em>jQuery</em></span>
-                <span class="archive-arrow" aria-hidden="true">↗</span>
-                <span class="archive-thumb"><img src="assets/img/works/wtc.jpg" alt="WTC 메인 화면" loading="lazy"></span>
-              </a>
-            </li>
-            <li>
-              <a class="link-archive" href="http://www.ildongcare.com/" target="_blank" rel="noopener" data-cursor="VISIT" data-index="2">
-                <span class="archive-year">2025</span>
-                <span class="archive-title"><span class="archive-name">일동생활건강</span><span class="archive-award">GDWEB 수상</span><small>헬스케어 기업 사이트</small></span>
-                <span class="archive-type">실무</span>
-                <span class="archive-tag"><em>PHP</em><em>GSAP</em><em>jQuery</em></span>
-                <span class="archive-arrow" aria-hidden="true">↗</span>
-                <span class="archive-thumb"><img src="assets/img/works/ildongcare.jpg" alt="일동생활건강 메인 화면" loading="lazy"></span>
-              </a>
-            </li>
-            <li>
-              <a class="link-archive" href="http://andongmice.or.kr/" target="_blank" rel="noopener" data-cursor="VISIT" data-index="3">
-                <span class="archive-year">2024</span>
-                <span class="archive-title"><span class="archive-name">안동컨벤션뷰로</span><small>MICE 홍보 반응형 사이트</small></span>
-                <span class="archive-type">실무</span>
-                <span class="archive-tag"><em>PHP</em><em>GSAP</em><em>ScrollTrigger</em><em>jQuery</em></span>
-                <span class="archive-arrow" aria-hidden="true">↗</span>
-                <span class="archive-thumb"><img src="assets/img/works/andong.jpg" alt="안동컨벤션뷰로 메인 화면" loading="lazy"></span>
-              </a>
-            </li>
-            <li>
-              <a class="link-archive" href="https://euni0224.github.io/PILL/" target="_blank" rel="noopener" data-cursor="VISIT" data-index="4">
-                <span class="archive-year">2023</span>
-                <span class="archive-title"><span class="archive-name">PILL</span><small>인터랙션 랜딩 페이지</small></span>
-                <span class="archive-type">개인 작업</span>
-                <span class="archive-tag"><em>GSAP</em><em>jQuery</em><em>반응형</em></span>
-                <span class="archive-arrow" aria-hidden="true">↗</span>
-                <span class="archive-thumb"><img src="assets/img/works/pill.jpg" alt="PILL 메인 화면" loading="lazy"></span>
-              </a>
-            </li>
-            <li>
-              <a class="link-archive" href="https://euni0224.github.io/nike/" target="_blank" rel="noopener" data-cursor="VISIT" data-index="5">
-                <span class="archive-year">2023</span>
-                <span class="archive-title"><span class="archive-name">NIKE</span><small>브랜드 프로모션 페이지</small></span>
-                <span class="archive-type">개인 작업</span>
-                <span class="archive-tag"><em>GSAP</em><em>ScrollTrigger</em><em>PC 적응형</em></span>
-                <span class="archive-arrow" aria-hidden="true">↗</span>
-                <span class="archive-thumb"><img src="assets/img/works/nike.jpg" alt="NIKE 메인 화면" loading="lazy"></span>
-              </a>
-            </li>
+      </div>
+    </section>
+
+    <section class="panel p-stats is-open" data-panel="stats" style="--delay:.34s">
+      <div class="panel-head">
+        <span class="panel-handle" aria-hidden="true"></span>
+        <h2>[Stats]</h2>
+        <span class="panel-handle" style="visibility:hidden" aria-hidden="true"></span>
+      </div>
+      <div class="panel-body">
+        <p class="stats-head"><span>Nb.</span><span>×125</span></p>
+        <div class="stats-card">
+          <p class="logo">HK.</p>
+          <p class="big">Screens.<b><span class="js-count" data-to="125">0</span>+</b>Since 2020.</p>
+          <small>4 yrs+ Web Publishing<br>10+ Education services<br>10+ Corporate sites<br>GDWEB Award — 일동생활건강</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel p-stack is-open" data-panel="stack" style="--delay:.38s">
+      <div class="panel-head">
+        <span class="panel-handle" aria-hidden="true"></span>
+        <h2>[Stack]</h2>
+        <span class="panel-handle" style="visibility:hidden" aria-hidden="true"></span>
+      </div>
+      <div class="panel-body">
+        <ul class="stack-list">
+          <li>HTML5</li><li>SCSS</li><li>JavaScript</li><li>TypeScript</li>
+          <li>React</li><li>GSAP</li><li>jQuery</li><li>Thymeleaf</li>
+          <li>Figma MCP</li><li>Claude Code</li><li>Playwright</li><li>Chart.js</li>
         </ul>
       </div>
     </section>
 
-    <section class="se-stack" id="stack">
-      <div class="group-stack">
-        <p class="eyebrow">Stack</p>
-        <h2 class="section-title">What I use</h2>
-        <div class="stack-area">
-          <div class="stack-wrap">
-            <h3>Markup &amp; Style</h3>
-            <ul>
-              <li class="stack-box">HTML5 <small>시맨틱 마크업</small></li>
-              <li class="stack-box">CSS3 <small>Custom Properties</small></li>
-              <li class="stack-box">SCSS <small>화면 단위 모듈</small></li>
-              <li class="stack-box">반응형 <small>clamp · dvh</small></li>
-              <li class="stack-box">접근성 <small>ARIA</small></li>
-            </ul>
-          </div>
-          <div class="stack-wrap">
-            <h3>Script</h3>
-            <ul>
-              <li class="stack-box">JavaScript <small>Vanilla</small></li>
-              <li class="stack-box">TypeScript</li>
-              <li class="stack-box">React <small>Vite</small></li>
-              <li class="stack-box">jQuery</li>
-              <li class="stack-box">Pointer Events <small>드래그 앤 드롭</small></li>
-              <li class="stack-box">Canvas <small>연습장 필기</small></li>
-            </ul>
-          </div>
-          <div class="stack-wrap">
-            <h3>Library</h3>
-            <ul>
-              <li class="stack-box">GSAP <small>ScrollTrigger</small></li>
-              <li class="stack-box">Swiper</li>
-              <li class="stack-box">Lottie</li>
-              <li class="stack-box">Chart.js</li>
-              <li class="stack-box">KaTeX <small>수식</small></li>
-              <li class="stack-box">Quill <small>에디터</small></li>
-            </ul>
-          </div>
-          <div class="stack-wrap">
-            <h3>Template · Tool</h3>
-            <ul>
-              <li class="stack-box">Thymeleaf <small>Spring 템플릿</small></li>
-              <li class="stack-box">PHP <small>그누보드</small></li>
-              <li class="stack-box">Vue <small>유지보수</small></li>
-              <li class="stack-box">CSS Modules <small>React</small></li>
-              <li class="stack-box">Git</li>
-              <li class="stack-box">Figma <small>상세 페이지</small></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
+    <div class="info info-system" aria-hidden="true">
+      <p>System</p>
+      <dl>
+        <dt>Browser :</dt><dd data-stat="browser">—</dd>
+        <dt>OS :</dt><dd data-stat="os">—</dd>
+        <dt>Viewport :</dt><dd data-stat="vp">—</dd>
+        <dt>Display :</dt><dd data-stat="dpr">—</dd>
+        <dt>Refresh rate :</dt><dd data-stat="hz">— Hz</dd>
+        <dt>Lang :</dt><dd data-stat="lang">—</dd>
+        <dt>Timezone :</dt><dd data-stat="tz">—</dd>
+      </dl>
+    </div>
 
-    <section class="se-ai" id="ai">
-      <div class="group-ai">
-        <div class="ai-head">
-          <div>
-            <p class="eyebrow">AI Workflow</p>
-            <h2 class="section-title">Work with AI</h2>
-          </div>
-          <p>반복 작업과 검증은 AI에게 맡기고, 구조 설계와 최종 판단은 직접 합니다. 그래서 같은 시간에 더 많은 화면을 더 꼼꼼하게 확인합니다.</p>
-        </div>
-
-        <div class="ai-quote">
-          <p class="quote-text">AI 시대에 <em>못 만들 것은 없다</em>고 생각합니다.</p>
-          <p class="quote-sub">모르는 부분은 동료에게 묻고, AI 도구까지 동원해 끝까지 해결합니다. 화면 구현에 머무르지 않고 필요한 것은 직접 만듭니다. 이 포트폴리오와 햄운사주 React 웹앱도 그렇게 만들었습니다.</p>
-        </div>
-
-        <div class="ai-area">
-          <div class="terminal-wrap" aria-label="AI 코딩 도구 사용 예시">
-            <div class="terminal-bar"><i></i><i></i><i></i><span>claude code</span></div>
-            <div class="terminal-box">
-              <p class="terminal-line is-prompt">320~1920px 가로 넘침·잘림 찾아줘. 디자인 수치·클래스명은 유지하고 수정 전후 스크린샷 비교</p>
-              <p class="terminal-line is-log">· 페이지 5개 × 해상도별 스크린샷 확인</p>
-              <p class="terminal-line is-log">· 가로 넘침 0건 / 좌우 여백 누락 4곳 발견</p>
-              <p class="terminal-line is-log">· padding 축약형이 좌우 여백을 덮어씀 → padding-block 으로 수정</p>
-              <p class="terminal-line is-done">✓ 완료 — 전후 스크린샷 비교 후 직접 검수해 반영</p>
-            </div>
-            <p class="terminal-note">이 포트폴리오를 만들며 실제로 한 작업을 정리한 예시입니다.</p>
-          </div>
-
-          <ul class="ai-list">
-            <li class="ai-box">
-              <span class="ai-no">01</span>
-              <h3>Claude Code로 반복 작업 자동화</h3>
-              <p>백엔드가 섞인 프로젝트에서 퍼블리싱 결과물만 정적 페이지로 분리하고, 클래스명 일괄 정리와 더미 데이터 작성처럼 손이 많이 가는 작업을 맡깁니다.</p>
-              <div class="tag-list"><span>Claude Code</span><span>정적 변환</span><span>일괄 수정</span></div>
-            </li>
-            <li class="ai-box">
-              <span class="ai-no">02</span>
-              <h3>Figma 시안을 코드로</h3>
-              <p>Claude에 Figma MCP를 연결해 시안의 간격 · 색상 · 폰트 값을 읽고 HTML · SCSS 마크업 초안을 만든 뒤, 구조와 접근성, 반응형 기준에 맞게 직접 다듬습니다. 햄운사주 React 화면 구현에도 사용했습니다.</p>
-              <div class="tag-list"><span>Figma MCP</span><span>React</span><span>디자인 → 코드</span></div>
-            </li>
-            <li class="ai-box">
-              <span class="ai-no">03</span>
-              <h3>스크린샷으로 반응형 검증</h3>
-              <p>Playwright로 여러 해상도의 스크린샷을 한 번에 찍어 깨지는 곳을 찾습니다. 눈으로 하나씩 늘려 보던 확인을 빠르고 빠짐없이 합니다.</p>
-              <div class="tag-list"><span>Playwright</span><span>320 ~ 1920px</span><span>회귀 확인</span></div>
-            </li>
-            <li class="ai-box">
-              <span class="ai-no">04</span>
-              <h3>판단은 직접</h3>
-              <p>AI가 만든 코드는 그대로 쓰지 않습니다. 네이밍 규칙, 접근성, 실제로 내가 한 작업인지까지 직접 검수하고 고칩니다.</p>
-              <div class="tag-list"><span>코드 리뷰</span><span>네이밍 규칙</span><span>접근성</span></div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
+    <div class="info info-keys" aria-hidden="true">
+      <p>Shortcuts</p>
+      <dl>
+        <dt>[D]</dt><dd>Dark mode / Light mode</dd>
+        <dt>[G]</dt><dd>Show grid</dd>
+        <dt>[L]</dt><dd>Reset layout</dd>
+        <dt>[A]</dt><dd>About</dd>
+        <dt>[Esc]</dt><dd>Close project</dd>
+        <dt>[0–9]</dt><dd>Project 00 – 09</dd>
+      </dl>
+    </div>
   </main>
 
-  <section class="se-contact" id="contact">
-    <div class="group-contact">
-      <p class="eyebrow">Contact</p>
-      <h2 class="contact-title"><span class="line-box"><span class="contact-line">함께 만들 화면이</span></span><span class="line-box"><span class="contact-line">있다면, <em>이야기</em></span></span><span class="line-box"><span class="contact-line">나눠요.</span></span></h2>
-      <p class="contact-note"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 20h8M12 16v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>대면 면접 시 실제 화면을 직접 조작하며 더 자세히 보여드릴 수 있습니다.</p>
-      <div class="link-area" data-profile="links"></div>
-      <footer class="footer-area">
-        <p data-profile="copy">© Web Publisher Portfolio</p>
-        <p>Built with HTML · CSS · GSAP</p>
-      </footer>
+  <footer class="se-bottom">
+    <div class="link-area">
+      <a class="chip is-light" href="https://github.com/euni0224" target="_blank" rel="noopener"><span data-scramble>Github</span><span class="chip-icon" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 9 9 1M3 1h6v6" stroke="currentColor" /></svg></span></a>
+      <a class="chip is-light" href="mailto:gong49677@kakao.com"><span data-scramble>Mail</span><span class="chip-icon" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 9 9 1M3 1h6v6" stroke="currentColor" /></svg></span></a>
     </div>
-  </section>
+    <p class="credit">Designed and developed by <a href="mailto:gong49677@kakao.com">홍경은</a></p>
+  </footer>
 
-  </div>
-  </div>
+  <div class="se-cursor" aria-hidden="true"><div class="cursor-dot"><span class="js-xy">0<br>0</span></div></div>
+  <div class="cursor-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 
-  <!-- 고정 요소는 smooth-content 밖에 둬야 transform 영향을 받지 않음 -->
-  <a class="btn-top" href="#top" aria-label="맨 위로 이동">
-    <svg class="top-ring" viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="26" pathLength="100"/></svg>
-    <svg class="top-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </a>
-  <div class="preview-area" aria-hidden="true">
-    <div class="preview-wrap">
-      <div class="preview-box"><img src="assets/img/works/adco.jpg" alt=""></div>
-      <div class="preview-box"><img src="assets/img/works/wtc.jpg" alt=""></div>
-      <div class="preview-box"><img src="assets/img/works/ildongcare.jpg" alt=""></div>
-      <div class="preview-box"><img src="assets/img/works/andong.jpg" alt=""></div>
-      <div class="preview-box"><img src="assets/img/works/pill.jpg" alt=""></div>
-      <div class="preview-box"><img src="assets/img/works/nike.jpg" alt=""></div>
-    </div>
-  </div>
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var deskMQ = matchMedia('(min-width: 1100px) and (min-height: 700px)');
+      var $ = function (s, c) { return (c || document).querySelector(s); };
+      var $$ = function (s, c) { return Array.from((c || document).querySelectorAll(s)); };
 
-  <script src="assets/vendor/gsap/gsap.min.js"></script>
-  <script src="assets/vendor/gsap/ScrollTrigger.min.js"></script>
-  <script src="assets/vendor/gsap/ScrollSmoother.min.js"></script>
-  <script src="assets/vendor/gsap/SplitText.min.js"></script>
-  <script src="assets/js/profile.js"></script>
-  <script src="assets/js/main.js"></script>
+      var WORKS = [
+        { name: 'EBS 수학진단도구', type: 'Education', year: '2026', role: '학생 화면 전체 퍼블리싱', size: '25 screens', href: 'projects/ebs/index.html',
+          desc: '우주 탐사 콘셉트로 중학생의 수학 결손 개념을 진단하는 서비스. 11가지 문항 유형과 개념 지도 리포트까지 학생이 만나는 전 화면을 만들었습니다.',
+          tags: ['SCSS', 'KaTeX', 'Lottie', 'Drag & Drop', 'Canvas'],
+          imgs: ['projects/ebs/img/portfolio/home.jpg', 'projects/ebs/img/portfolio/question-match.jpg', 'projects/ebs/img/portfolio/reporter.jpg'] },
+        { name: '시원스쿨 AI 스피킹', type: 'Web App', year: '2025', role: '전 화면 퍼블리싱 · 인터랙션', size: '28 screens', href: 'projects/siwon/index.html',
+          desc: '설치 없이 브라우저에서 앱처럼 쓰는 모바일 웹앱. AI 캐릭터와 영어로 대화하고 발음 리포트를 받는 화면을 PC · 태블릿 · 모바일에 맞춰 만들었습니다.',
+          tags: ['Mobile Web App', 'Thymeleaf', 'Swiper', 'dotLottie', '100dvh'],
+          imgs: ['projects/siwon/img/portfolio/chatbot_intent.jpg', 'projects/siwon/img/portfolio/test_report.jpg', 'projects/siwon/img/portfolio/choose_level.jpg'] },
+        { name: 'Build Up Literacy', type: 'Education', year: '2025', role: '학생 화면 퍼블리싱', size: '23 screens', href: 'projects/yeamoonsa/index.html',
+          desc: '초등학생이 영어 리터러시를 쌓는 학습 서비스. Step · Book 선택부터 주차별 학습, 게임 6종, 마이페이지까지 만들었습니다.',
+          tags: ['Games ×6', 'Lottie', 'Swiper', 'State markup'],
+          imgs: ['projects/yeamoonsa/img/portfolio/content-weekly.jpg', 'projects/yeamoonsa/img/portfolio/game-wordhunt.jpg', 'projects/yeamoonsa/img/portfolio/sticker-book.jpg'] },
+        { name: 'BuildUp LMS', type: 'Admin', year: '2025', role: '퍼블리싱 + 일부 UI 디자인', size: '49 screens', href: 'projects/lms/index.html',
+          desc: '본사 · 지사 · 원 · 교사가 쓰는 관리 시스템. 권한 4종에 맞춘 대시보드, 통계, 학습 결과 화면을 퍼블리싱하고 일부 화면은 UI 디자인까지 했습니다.',
+          tags: ['Chart.js', 'Quill', 'jQuery', 'Role-based UI'],
+          imgs: ['projects/lms/screenshots/dashboard.png', 'projects/lms/screenshots/classroom_stats.png', 'projects/lms/screenshots/ranking.png'] },
+        { name: '햄운사주', type: 'React', year: '2026', role: 'UI 화면 구현 (2인 팀)', size: 'Web App', href: 'https://hamwoonsaju.com/', ext: true,
+          desc: '모바일 브라우저에 맞춘 AI 사주 서비스. Figma 시안을 React 컴포넌트로 옮겨 로그인 · 온보딩, 홈, 오늘의 운세, MY 화면을 구현했습니다.',
+          tags: ['React', 'TypeScript', 'Vite', 'CSS Modules'],
+          imgs: ['assets/img/works/hamwoonsaju.jpg'] },
+        { name: '일동생활건강', type: 'Corporate', year: '2025', role: '퍼블리싱 · 인터랙션', size: 'Website', href: 'http://www.ildongcare.com/', ext: true, award: true,
+          desc: '헬스케어 기업 사이트. 그누보드 기반 PHP 환경에서 GSAP 인터랙션을 더했고 GDWEB에서 수상했습니다.',
+          tags: ['PHP', 'GSAP', 'jQuery', 'GDWEB Award'],
+          imgs: ['assets/img/works/ildongcare.jpg'] },
+        { name: 'ADCO', type: 'Corporate', year: '2025', role: '퍼블리싱 · 인터랙션', size: 'Website', href: 'https://adco.or.kr/', ext: true,
+          desc: '안동국제컨벤션센터 공식 사이트. 행사 일정 캘린더와 Canvas 인터랙션을 구현했습니다.',
+          tags: ['PHP', 'GSAP', 'Canvas', 'FullCalendar'],
+          imgs: ['assets/img/works/adco.jpg'] },
+        { name: 'WTC', type: 'Corporate', year: '2025', role: '퍼블리싱 · 인터랙션', size: 'Website', href: 'http://www.wtckorea.com/', ext: true,
+          desc: '플로어링 브랜드 기업 사이트. 제품 이미지가 돋보이도록 스크롤 인터랙션을 설계했습니다.',
+          tags: ['PHP', 'GSAP', 'jQuery'],
+          imgs: ['assets/img/works/wtc.jpg'] },
+        { name: '안동컨벤션뷰로', type: 'Corporate', year: '2024', role: '퍼블리싱 · 인터랙션', size: 'Website', href: 'http://andongmice.or.kr/', ext: true,
+          desc: 'MICE 홍보 반응형 사이트. ScrollTrigger로 섹션 전환 인터랙션을 구현했습니다.',
+          tags: ['PHP', 'GSAP', 'ScrollTrigger'],
+          imgs: ['assets/img/works/andong.jpg'] },
+        { name: 'PILL', type: 'Personal', year: '2023', role: '기획 · 퍼블리싱', size: 'Landing', href: 'https://euni0224.github.io/PILL/', ext: true,
+          desc: 'GSAP 인터랙션을 연습하며 만든 반응형 랜딩 페이지.',
+          tags: ['GSAP', 'jQuery', 'Responsive'],
+          imgs: ['assets/img/works/pill.jpg'] },
+        { name: 'NIKE', type: 'Personal', year: '2023', role: '기획 · 퍼블리싱', size: 'Promotion', href: 'https://euni0224.github.io/nike/', ext: true,
+          desc: 'ScrollTrigger로 제품을 보여주는 브랜드 프로모션 페이지.',
+          tags: ['GSAP', 'ScrollTrigger'],
+          imgs: ['assets/img/works/nike.jpg'] }
+      ];
+
+      var TROPHY = '<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" aria-label="수상"><path d="M3.5 1.5h5v3a2.5 2.5 0 0 1-5 0v-3ZM6 7v2.5M4 10.5h4M3.5 2.5H1.5a2 2 0 0 0 2 2M8.5 2.5h2a2 2 0 0 1-2 2"/></svg>';
+      var ARROW = '<span class="chip-icon" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 9 9 1M3 1h6v6" stroke="currentColor"/></svg></span>';
+
+      /* ---------- 글자 스크램블 ---------- */
+      var GLYPHS = '!<>-_\\/[]{}—=+*^?#$%&@ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      function rand() { return GLYPHS[(Math.random() * GLYPHS.length) | 0]; }
+      function scramble(el, text, dur) {
+        if (el._raf) cancelAnimationFrame(el._raf);
+        if (reduced) { el.textContent = text; return; }
+        var chars = Array.from(text), t0 = performance.now();
+        dur = dur || 500;
+        (function step(now) {
+          var p = Math.min((now - t0) / dur, 1);
+          var done = Math.floor(p * chars.length);
+          el.textContent = chars.map(function (c, i) { return i < done || c === ' ' ? c : rand(); }).join('');
+          if (p < 1) el._raf = requestAnimationFrame(step);
+        })(t0);
+      }
+      function gibberish(len) {
+        var s = '';
+        for (var i = 0; i < len; i++) s += Math.random() < .14 ? ' ' : rand();
+        return s;
+      }
+      $$('[data-scramble]').forEach(function (el) {
+        var text = el.textContent;
+        el.setAttribute('aria-label', text);
+        var host = el.closest('a, button') || el;
+        host.addEventListener('pointerenter', function () { scramble(el, text, 400); });
+      });
+
+      /* ---------- 작업 목록 렌더 ---------- */
+      var listEl = $('.work-list'), stripEl = $('.strip-list');
+      WORKS.forEach(function (w, i) {
+        var li = document.createElement('li');
+        li.innerHTML = '<button class="btn-work" type="button" data-i="' + i + '"><span class="work-no">[' + i + ']</span><span class="work-name">' + w.name + (w.award ? TROPHY : '') + '</span></button>';
+        listEl.appendChild(li);
+        var s = document.createElement('button');
+        s.type = 'button';
+        s.className = 'btn-strip';
+        s.dataset.i = i;
+        s.setAttribute('aria-label', w.name + ' 보기');
+        s.innerHTML = '<img src="' + w.imgs[0] + '" alt="" loading="lazy">';
+        stripEl.appendChild(s);
+      });
+
+      var detailP = $('.p-detail'), imagesP = $('.p-images');
+      var current = -1;
+      function selectWork(i) {
+        if (i === current || !WORKS[i]) return;
+        current = i;
+        var w = WORKS[i];
+        $$('.btn-work, .btn-strip').forEach(function (b) { b.classList.toggle('is-on', +b.dataset.i === i); });
+        listEl.classList.add('has-selected');
+        $('.col-mid').classList.add('has-work');
+        [detailP, imagesP].forEach(function (p) { p.classList.remove('is-empty'); p.classList.add('is-open'); bringFront(p); });
+        $('.detail-box').innerHTML =
+          '<p class="detail-meta"><span>[' + String(i).padStart(2, '0') + '] ' + w.type + '</span><span>' + w.year + '</span></p>' +
+          '<h3 class="detail-title" data-t></h3>' +
+          '<p class="detail-desc">' + w.desc + '</p>' +
+          '<dl class="detail-dl"><dt>Role</dt><dd>' + w.role + '</dd><dt>Scope</dt><dd>' + w.size + '</dd></dl>' +
+          '<div class="tag-list">' + w.tags.map(function (t) { return '<span>' + t + '</span>'; }).join('') + '</div>' +
+          '<a class="chip" href="' + w.href + '"' + (w.ext ? ' target="_blank" rel="noopener"' : '') + '>' + (w.ext ? 'Visit site' : 'Open project') + ARROW + '</a>';
+        scramble($('.detail-title'), w.name, 450);
+        $('.image-list').innerHTML = w.imgs.map(function (src) {
+          return '<a href="' + w.href + '"' + (w.ext ? ' target="_blank" rel="noopener"' : '') + ' tabindex="-1"><img src="' + src + '" alt=""></a>';
+        }).join('');
+        var strip = stripEl.children[i];
+        if (deskMQ.matches) stripEl.scrollTo({ top: strip.offsetTop - 8, behavior: reduced ? 'auto' : 'smooth' });
+        else detailP.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+      }
+      function closeWork() {
+        current = -1;
+        $$('.btn-work, .btn-strip').forEach(function (b) { b.classList.remove('is-on'); });
+        listEl.classList.remove('has-selected');
+        $('.col-mid').classList.remove('has-work');
+        [detailP, imagesP].forEach(function (p) { p.classList.remove('is-open'); p.classList.add('is-empty'); });
+      }
+      document.addEventListener('click', function (e) {
+        var b = e.target.closest('.btn-work, .btn-strip');
+        if (b) selectWork(+b.dataset.i);
+        if (e.target.closest('.js-close-work')) closeWork();
+      });
+
+      /* ---------- ABOUT: 깨진 글자 → 해독 ---------- */
+      var aboutP = $('.p-about'), aboutBtn = $('.js-about-toggle'), teaser = $('[data-teaser]');
+      var decodeEls = $$('[data-decode]').map(function (el) { return { el: el, text: el.textContent }; });
+      var teaserTimer;
+      function noiseTeaser() { teaser.textContent = gibberish(36) + '\n' + gibberish(40); }
+      teaser.style.whiteSpace = 'pre-line';
+      noiseTeaser();
+      if (!reduced) teaserTimer = setInterval(noiseTeaser, 140);
+      function setAbout(open) {
+        aboutP.classList.toggle('is-open', open);
+        aboutBtn.setAttribute('aria-expanded', open);
+        aboutBtn.setAttribute('aria-label', open ? '소개 닫기' : '소개 열기');
+        teaser.hidden = open;
+        if (open) {
+          bringFront(aboutP);
+          decodeEls.forEach(function (d, k) { scramble(d.el, d.text, 700 + k * 250); });
+        }
+      }
+      aboutBtn.addEventListener('click', function () { setAbout(!aboutP.classList.contains('is-open')); });
+      $('.js-open-about').addEventListener('click', function () { setAbout(true); });
+
+      /* ---------- 패널 드래그 · 앞으로 가져오기 ---------- */
+      // 첫 패널의 점 아이콘을 다른 패널 핸들에도 복사
+      var dots = $('.panel-handle svg').outerHTML;
+      $$('.panel-handle:not([style])').forEach(function (h) { if (!h.firstChild) h.innerHTML = dots; });
+
+      var front = null;
+      function bringFront(p) {
+        if (front) front.classList.remove('is-front');
+        front = p;
+        p.classList.add('is-front');
+      }
+      $$('.panel').forEach(function (p) {
+        p.addEventListener('pointerdown', function () { bringFront(p); });
+        var handle = $('.panel-handle', p);
+        var sx, sy, ox, oy;
+        handle.addEventListener('pointerdown', function (e) {
+          if (!deskMQ.matches) return;
+          e.preventDefault();
+          handle.setPointerCapture(e.pointerId);
+          sx = e.clientX; sy = e.clientY;
+          ox = parseFloat(p.style.getPropertyValue('--dx')) || 0;
+          oy = parseFloat(p.style.getPropertyValue('--dy')) || 0;
+          p.classList.add('is-dragging');
+        });
+        handle.addEventListener('pointermove', function (e) {
+          if (!p.classList.contains('is-dragging')) return;
+          p.style.setProperty('--dx', ox + e.clientX - sx + 'px');
+          p.style.setProperty('--dy', oy + e.clientY - sy + 'px');
+        });
+        function end() { p.classList.remove('is-dragging'); }
+        handle.addEventListener('pointerup', end);
+        handle.addEventListener('pointercancel', end);
+      });
+      function resetLayout() {
+        $$('.panel').forEach(function (p) {
+          p.style.transition = 'translate .8s cubic-bezier(.65,0,.35,1)';
+          p.style.setProperty('--dx', '0px');
+          p.style.setProperty('--dy', '0px');
+          setTimeout(function () { p.style.transition = ''; }, 800);
+        });
+      }
+
+      /* ---------- 도구: 테마 · 그리드 · 초기화 ---------- */
+      function toggleTheme() {
+        var dark = root.classList.toggle('dark');
+        try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) { }
+      }
+      var gridBtn = $('.js-grid');
+      function toggleGrid() {
+        var on = root.classList.toggle('show-grid');
+        gridBtn.setAttribute('aria-pressed', on);
+      }
+      $('.js-theme').addEventListener('click', toggleTheme);
+      gridBtn.addEventListener('click', toggleGrid);
+      $('.js-reset').addEventListener('click', resetLayout);
+
+      /* ---------- 세션 · 시스템 정보 ---------- */
+      var stat = {};
+      $$('[data-stat]').forEach(function (el) { stat[el.dataset.stat] = el; });
+      var counts = { clicks: 0, hovers: 0, keys: 0, dist: 0 };
+      var started = Date.now();
+      var seoul = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Seoul', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+      function pad(n) { return String(n).padStart(2, '0'); }
+      function tickClock() {
+        var t = seoul.format(new Date());
+        stat.time.textContent = t;
+        $('.js-now-hm').textContent = t.slice(0, 5);
+        $('.js-now-s').textContent = t.slice(6);
+        var s = Math.floor((Date.now() - started) / 1000);
+        stat.dur.textContent = pad(Math.floor(s / 3600)) + ':' + pad(Math.floor(s / 60) % 60) + ':' + pad(s % 60);
+      }
+      tickClock();
+      setInterval(tickClock, 1000);
+
+      var ua = navigator.userAgent;
+      stat.browser.textContent = /Edg\//.test(ua) ? 'Edge' : /Whale/.test(ua) ? 'Whale' : /SamsungBrowser/.test(ua) ? 'Samsung' : /Chrome\//.test(ua) ? 'Chrome' : /Firefox\//.test(ua) ? 'Firefox' : /Safari\//.test(ua) ? 'Safari' : 'Other';
+      stat.os.textContent = /Windows/.test(ua) ? 'Windows' : /iPhone|iPad/.test(ua) ? 'iOS' : /Mac OS/.test(ua) ? 'macOS' : /Android/.test(ua) ? 'Android' : /Linux/.test(ua) ? 'Linux' : 'Other';
+      stat.dpr.textContent = (devicePixelRatio || 1) + 'x';
+      stat.lang.textContent = (navigator.language || 'ko').toUpperCase();
+      try { stat.tz.textContent = Intl.DateTimeFormat().resolvedOptions().timeZone; } catch (e) { }
+      stat.http.textContent = location.protocol.replace(':', '');
+      var conn = navigator.connection;
+      stat.net.textContent = conn && conn.effectiveType ? conn.effectiveType : (navigator.onLine ? 'Online' : 'Offline');
+      function vp() { stat.vp.textContent = innerWidth + ' × ' + innerHeight; }
+      vp();
+      addEventListener('resize', vp);
+      // 작은 파일을 한 번 받아 대략적인 응답 시간을 보여 줌
+      var p0 = performance.now();
+      fetch('assets/img/favicon-32.png', { cache: 'no-store' }).then(function () {
+        stat.ping.textContent = Math.round(performance.now() - p0) + ' ms';
+      }).catch(function () { });
+
+      addEventListener('click', function () { stat.clicks.textContent = ++counts.clicks; });
+      addEventListener('keydown', function () { stat.keys.textContent = ++counts.keys; });
+      document.addEventListener('pointerover', function (e) {
+        if (e.target.closest('a, button')) stat.hovers.textContent = ++counts.hovers;
+      });
+
+      /* ---------- 커서 · 마우스 속도 ---------- */
+      var mouse = { x: innerWidth / 2, y: innerHeight / 2 }, last = null, speed = 0;
+      var dot = $('.se-cursor'), xy = $('.js-xy'), frame = $('.cursor-frame');
+      var cur = { x: mouse.x, y: mouse.y };
+      var hoverEl = null;
+      var fr = { x: 0, y: 0, w: 0, h: 0 };
+      addEventListener('pointermove', function (e) {
+        if (last) {
+          var d = Math.hypot(e.clientX - last.x, e.clientY - last.y);
+          var dt = Math.max(e.timeStamp - last.t, 1);
+          speed += (d / dt * 1000 - speed) * .2;
+          counts.dist += d;
+        }
+        last = { x: e.clientX, y: e.clientY, t: e.timeStamp };
+        mouse.x = e.clientX; mouse.y = e.clientY;
+        xy.innerHTML = Math.round(e.clientX) + '<br>' + Math.round(e.clientY);
+      }, { passive: true });
+      document.addEventListener('pointerover', function (e) {
+        hoverEl = e.target.closest('a, button, .stack-list li');
+        frame.classList.toggle('is-on', !!hoverEl);
+      });
+
+      var frames = 0, fpsT = performance.now(), hzSamples = [];
+      (function loop(now) {
+        cur.x += (mouse.x - cur.x) * .35;
+        cur.y += (mouse.y - cur.y) * .35;
+        dot.style.transform = 'translate(' + cur.x + 'px,' + cur.y + 'px)';
+        if (hoverEl) {
+          var r = hoverEl.getBoundingClientRect();
+          fr.x += (r.left - fr.x) * .3; fr.y += (r.top - fr.y) * .3;
+          fr.w += (r.width - fr.w) * .3; fr.h += (r.height - fr.h) * .3;
+          frame.style.transform = 'translate(' + fr.x + 'px,' + fr.y + 'px)';
+          frame.style.width = fr.w + 'px';
+          frame.style.height = fr.h + 'px';
+        }
+        speed *= .94;
+        frames++;
+        if (now - fpsT > 500) {
+          var fps = frames * 1000 / (now - fpsT);
+          stat.fps.textContent = Math.round(fps);
+          stat.speed.textContent = Math.round(speed) + ' px/s';
+          stat.dist.textContent = Math.round(counts.dist).toLocaleString('en') + ' px';
+          if (hzSamples.length < 6) {
+            hzSamples.push(fps);
+            var best = Math.max.apply(null, hzSamples);
+            stat.hz.textContent = (best > 100 ? Math.round(best / 10) * 10 : 60) + ' Hz';
+          }
+          frames = 0; fpsT = now;
+        }
+        requestAnimationFrame(loop);
+      })(performance.now());
+
+      /* ---------- 단축키 ---------- */
+      addEventListener('keydown', function (e) {
+        if (e.metaKey || e.ctrlKey || e.altKey || !root.classList.contains('is-booted')) return;
+        if (e.target.closest && e.target.closest('input, textarea')) return;
+        var k = e.key.toLowerCase();
+        if (k === 'd') toggleTheme();
+        else if (k === 'g') toggleGrid();
+        else if (k === 'l') resetLayout();
+        else if (k === 'a') setAbout(!aboutP.classList.contains('is-open'));
+        else if (k === 'escape') closeWork();
+        else if (/^[0-9]$/.test(k)) selectWork(+k);
+      });
+
+      /* ---------- 숫자 카운트 ---------- */
+      function countUp() {
+        $$('.js-count').forEach(function (n) {
+          var to = +n.dataset.to, t0 = performance.now();
+          (function step(now) {
+            var p = reduced ? 1 : Math.min((now - t0) / 1400, 1);
+            n.textContent = Math.round((1 - Math.pow(1 - p, 3)) * to);
+            if (p < 1) requestAnimationFrame(step);
+          })(t0);
+        });
+      }
+
+      /* ---------- BIOS 부팅 ---------- */
+      var boot = $('.se-boot'), bootLines = $('.boot-lines');
+      var BOOT = [
+        'PORTFOLIO-V2 BIOS (C) HONG KYUNGEUN',
+        'PRESS ANY KEY ...... SKIP',
+        '',
+        'MEMORY TEST : 125 SCREENS ........ <span class="ok">OK</span>',
+        'LOADING WORKS [11] ............... <span class="ok">OK</span>',
+        'LOADING STACK [12] ............... <span class="ok">OK</span>',
+        '',
+        'PRESS <span class="key">ENTER↵</span> TO CONTINUE ....<span class="caret"></span>'
+      ];
+      var finished = false;
+      function finishBoot() {
+        if (finished) return;
+        finished = true;
+        try { sessionStorage.setItem('booted', '1'); } catch (e) { }
+        boot.style.transition = 'opacity .5s';
+        boot.style.opacity = 0;
+        setTimeout(function () { root.classList.add('is-booted'); boot.remove(); countUp(); }, reduced ? 0 : 450);
+      }
+      if (root.classList.contains('is-booted')) {
+        finished = true;
+        boot.remove();
+        countUp();
+      } else {
+        BOOT.forEach(function (line, i) {
+          setTimeout(function () {
+            var p = document.createElement('p');
+            p.innerHTML = line;
+            bootLines.appendChild(p);
+          }, reduced ? 0 : 120 + i * (i > 2 ? 260 : 90));
+        });
+        boot.addEventListener('click', finishBoot);
+        addEventListener('keydown', function onKey() { finishBoot(); removeEventListener('keydown', onKey); });
+      }
+
+      /* ---------- WebGL 배경: 커서를 따라 일렁이는 노이즈 그라디언트 ---------- */
+      var canvas = document.getElementById('gl');
+      var gl = canvas.getContext('webgl', { antialias: false, premultipliedAlpha: false });
+      if (!gl) { root.classList.add('no-gl'); return; }
+
+      var vs = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+      var fs = [
+        'precision highp float;',
+        'uniform vec2 uRes;uniform vec2 uMouse;uniform float uTime;uniform float uScroll;',
+        'uniform vec3 uBg;uniform vec3 uAccent;uniform float uDark;',
+        'vec3 mod289(vec3 x){return x-floor(x*(1./289.))*289.;}',
+        'vec2 mod289(vec2 x){return x-floor(x*(1./289.))*289.;}',
+        'vec3 permute(vec3 x){return mod289(((x*34.)+1.)*x);}',
+        'float snoise(vec2 v){const vec4 C=vec4(.211324865405187,.366025403784439,-.577350269189626,.024390243902439);',
+        'vec2 i=floor(v+dot(v,C.yy));vec2 x0=v-i+dot(i,C.xx);vec2 i1=(x0.x>x0.y)?vec2(1.,0.):vec2(0.,1.);',
+        'vec4 x12=x0.xyxy+C.xxzz;x12.xy-=i1;i=mod289(i);',
+        'vec3 p=permute(permute(i.y+vec3(0.,i1.y,1.))+i.x+vec3(0.,i1.x,1.));',
+        'vec3 m=max(.5-vec3(dot(x0,x0),dot(x12.xy,x12.xy),dot(x12.zw,x12.zw)),0.);m=m*m;m=m*m;',
+        'vec3 x=2.*fract(p*C.www)-1.;vec3 h=abs(x)-.5;vec3 ox=floor(x+.5);vec3 a0=x-ox;',
+        'm*=1.79284291400159-.85373472095314*(a0*a0+h*h);',
+        'vec3 g;g.x=a0.x*x0.x+h.x*x0.y;g.yz=a0.yz*x12.xz+h.yz*x12.yw;return 130.*dot(m,g);}',
+        'float hash(vec2 p){return fract(sin(dot(p,vec2(12.9898,78.233)))*43758.5453);}',
+        'void main(){',
+        '  vec2 uv=gl_FragCoord.xy/uRes;float asp=uRes.x/uRes.y;',
+        '  vec2 st=vec2(uv.x*asp,uv.y);vec2 m=vec2(uMouse.x*asp,uMouse.y);',
+        '  float t=uTime*.08;',
+        '  vec2 q=st*1.4+vec2(0.,uScroll*1.5);',
+        '  vec2 w=vec2(snoise(q+t),snoise(q+vec2(5.2,1.3)-t));',
+        '  float n=snoise(q+w*.9+t*.5);',
+        '  float d=distance(st,m);',
+        '  float blob=smoothstep(.75,0.,d+n*.18);',
+        '  float field=smoothstep(.15,.9,n*.5+.5)*.55+blob*.85;',
+        '  field=clamp(field,0.,1.)*mix(1.,.45,smoothstep(0.,.15,uScroll));',
+        '  float bands=smoothstep(.35,.4,fract(field*4.))*.06;',
+        '  vec3 col=mix(uBg,uAccent,field*mix(.75,.7,uDark));',
+        '  col+=bands*(uDark>.5?uAccent:vec3(1.));',
+        '  col+=(hash(gl_FragCoord.xy+fract(uTime))-.5)*.06;',
+        '  gl_FragColor=vec4(col,1.);',
+        '}'
+      ].join('\n');
+
+      function compile(type, src) {
+        var s = gl.createShader(type);
+        gl.shaderSource(s, src);
+        gl.compileShader(s);
+        return s;
+      }
+      var prog = gl.createProgram();
+      gl.attachShader(prog, compile(gl.VERTEX_SHADER, vs));
+      gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, fs));
+      gl.linkProgram(prog);
+      if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) { root.classList.add('no-gl'); return; }
+      gl.useProgram(prog);
+
+      var buf = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+      var loc = gl.getAttribLocation(prog, 'p');
+      gl.enableVertexAttribArray(loc);
+      gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+
+      var u = {};
+      ['uRes', 'uMouse', 'uTime', 'uScroll', 'uBg', 'uAccent', 'uDark'].forEach(function (n) { u[n] = gl.getUniformLocation(prog, n); });
+
+      function hexToRgb(hex) {
+        hex = hex.trim().replace('#', '');
+        if (hex.length === 3) hex = hex.replace(/./g, '$&$&');
+        var n = parseInt(hex, 16);
+        return [(n >> 16 & 255) / 255, (n >> 8 & 255) / 255, (n & 255) / 255];
+      }
+      // 테마 전환 시 색을 부드럽게 보간
+      var colors = { bg: [0, 0, 0], accent: [0, 0, 0], dark: 0 };
+      var target = { bg: [0, 0, 0], accent: [0, 0, 0], dark: 0 };
+      function readTheme() {
+        var cs = getComputedStyle(root);
+        target.bg = hexToRgb(cs.getPropertyValue('--bg'));
+        target.accent = hexToRgb(cs.getPropertyValue('--accent'));
+        target.dark = root.classList.contains('dark') ? 1 : 0;
+      }
+      readTheme();
+      colors.bg = target.bg.slice();
+      colors.accent = target.accent.slice();
+      colors.dark = target.dark;
+      new MutationObserver(readTheme).observe(root, { attributes: true, attributeFilter: ['class'] });
+
+      // 저해상도로 그려 성능 확보 (그레인 질감과도 어울림)
+      var scale = .5;
+      function resize() {
+        canvas.width = Math.round(innerWidth * scale);
+        canvas.height = Math.round(innerHeight * scale);
+        gl.viewport(0, 0, canvas.width, canvas.height);
+      }
+      resize();
+      addEventListener('resize', resize);
+
+      var sm = { x: .5, y: .5 };
+      var smScroll = 0;
+      var t0 = performance.now();
+      function render(now) {
+        var max = document.documentElement.scrollHeight - innerHeight;
+        var scrollP = max > 0 ? scrollY / max : 0;
+        var mx = mouse.x / innerWidth, my = 1 - mouse.y / innerHeight;
+        sm.x += (mx - sm.x) * .05;
+        sm.y += (my - sm.y) * .05;
+        smScroll += (scrollP - smScroll) * .08;
+        for (var i = 0; i < 3; i++) {
+          colors.bg[i] += (target.bg[i] - colors.bg[i]) * .08;
+          colors.accent[i] += (target.accent[i] - colors.accent[i]) * .08;
+        }
+        colors.dark += (target.dark - colors.dark) * .08;
+        gl.uniform2f(u.uRes, canvas.width, canvas.height);
+        gl.uniform2f(u.uMouse, sm.x, sm.y);
+        gl.uniform1f(u.uTime, reduced ? 0 : (now - t0) / 1000);
+        gl.uniform1f(u.uScroll, smScroll);
+        gl.uniform3fv(u.uBg, colors.bg);
+        gl.uniform3fv(u.uAccent, colors.accent);
+        gl.uniform1f(u.uDark, colors.dark);
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+        requestAnimationFrame(render);
+      }
+      requestAnimationFrame(render);
+    })();
+  </script>
 </body>
 
 </html>
